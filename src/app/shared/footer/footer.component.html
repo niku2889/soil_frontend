@@ -1,0 +1,84 @@
+<!--Footer Starts-->
+<footer class="card footer-card">
+    <div class="container-fluid">
+        <!--Accordion Starts-->
+        <section id="accordion" style="padding:0 10%;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="content-header" class="fgreen">
+                        <i class="icon-question"></i> Frequently Asked Questions</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!--One open panel at a time Starts-->
+                    <ngb-accordion [closeOthers]="true" activeIds="1">
+                        <ngb-panel id="1">
+                            <ng-template ngbPanelTitle>
+                                <span class="green-text">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                    squid?
+                                </span>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                    squid. </p>
+                            </ng-template>
+                        </ngb-panel>
+                        <ngb-panel id="2">
+                            <ng-template ngbPanelTitle>
+                                <span class="green-text">3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                                    laborum eiusmod?</span>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                    squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                                    nesciunt laborum eiusmod. </p>
+                            </ng-template>
+                        </ngb-panel>
+                        <ngb-panel id="3">
+                            <ng-template ngbPanelTitle>
+                                <span class="green-text">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                    squid?
+                                </span>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                    squid. </p>
+                            </ng-template>
+                        </ngb-panel>
+                        <ngb-panel id="4">
+                            <ng-template ngbPanelTitle>
+                                <span class="green-text">3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                                    laborum eiusmod?</span>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+                                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                    squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                                    nesciunt laborum eiusmod. </p>
+                            </ng-template>
+                        </ngb-panel>
+                    </ngb-accordion>
+                    <!--One open panel at a time Ends-->
+                </div>
+            </div>
+
+        </section>
+        <!--Accordion Ends-->
+
+    </div>
+</footer>
+<footer class="card footer-card">
+    <div class="container-fluid">
+        <p class="copyright text-center">
+            Copyright &copy; {{currentDate | date: 'yyyy'}} , All rights reserved. SMART Fertilizer Management |
+            <a>Home</a> |
+            <a>About</a> |
+            <a>Contact</a> |
+            <a>Terms of use</a> |
+            <a>Privacy Policy</a> |
+            <a>Security</a>
+        </p>
+
+    </div>
+</footer>
+<!--Footer Ends-->
