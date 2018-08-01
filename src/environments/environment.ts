@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   //apiUrl: 'https://sportscentrum.staging.gradlesol.com/app/api/'
-   apiUrl: 'http://localhost:3000/api/'
+   apiUrl: 'https://testnick.herokuapp.com/api/'
+
+  //apiUrl: 'http://localhost:3000/api/'
 
 };
 

@@ -24,278 +24,297 @@
         <div class="card-block">
           <aw-wizard [navBarLayout]="'small'">
             <aw-wizard-step stepTitle="Step 1">
-              <div class="row">
-                <div class="col-md-6">
-                  <h3 class="fgreen">Let's get started</h3>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <span class="has-float-label">
-                          <input class="form-control" id="first" type="text" placeholder="Name" />
-                          <label for="first">First name</label>
-                        </span>
+              <form [formGroup]="step1Form" (ngSubmit)="step1()">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h3 class="fgreen">Let's get started</h3>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <span class="has-float-label">
+                            <input class="form-control" id="first" type="text" name="firstName" placeholder="Name" formControlName="firstName" />
+                            <label for="first">First name</label>
+                          </span>
+                          <small *ngIf="step1Form.controls['firstName'].hasError('required') && step1Form.controls['firstName'].touched" class="font-small-1 text-danger">
+                            First Name is required
+                          </small>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <span class="has-float-label">
-                          <input class="form-control" id="last" type="text" placeholder="Surname" />
-                          <label for="first">Last name</label>
-                        </span>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <span class="has-float-label">
+                            <input class="form-control" id="last" type="text" name="lastName" placeholder="Surname" formControlName="lastName" />
+                            <label for="first">Last name</label>
+                          </span>
+
+                          <small *ngIf="step1Form.controls['lastName'].hasError('required') && step1Form.controls['lastName'].touched" class="font-small-1 text-danger">
+                            Last Name is required
+                          </small>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <span class="has-float-label">
-                          <input class="form-control" id="email" type="text" placeholder="Email" />
-                          <label for="email">Email address</label>
-                        </span>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <span class="has-float-label">
+                            <input class="form-control" id="email" type="text" name="email" placeholder="Email" formControlName="email" />
+                            <label for="email">Email address</label>
+                          </span>
+                          <small *ngIf="step1Form.controls['email'].hasError('required') && step1Form.controls['email'].touched" class="font-small-1 text-danger">
+                            Email is required
+                          </small>
+                          <small *ngIf="step1Form.controls['email'].hasError('pattern') && step1Form.controls['email'].touched && !step1Form.controls['email'].hasError('required')"
+                            class="font-small-1 text-danger">
+                            Email address is invalid
+                          </small>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="form-group has-float-label">
-                          <select class="form-control custom-select">
-                            <option value="Afghanistan">Afghanistan</option>
-                            <option value="Albania">Albania</option>
-                            <option value="Algeria">Algeria</option>
-                            <option value="Andorra">Andorra</option>
-                            <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-                            <option value="Argentina">Argentina</option>
-                            <option value="Armenia">Armenia</option>
-                            <option value="Australia">Australia</option>
-                            <option value="Austria">Austria</option>
-                            <option value="Azerbaijan">Azerbaijan</option>
-                            <option value="Bahamas">Bahamas</option>
-                            <option value="Bahrain">Bahrain</option>
-                            <option value="Bangladesh">Bangladesh</option>
-                            <option value="Barbados">Barbados</option>
-                            <option value="Belarus">Belarus</option>
-                            <option value="Belgium">Belgium</option>
-                            <option value="Belize">Belize</option>
-                            <option value="Benin">Benin</option>
-                            <option value="Bhutan">Bhutan</option>
-                            <option value="Bolivia">Bolivia</option>
-                            <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-                            <option value="Botswana">Botswana</option>
-                            <option value="Brazil">Brazil</option>
-                            <option value="Brunei">Brunei</option>
-                            <option value="Bulgaria">Bulgaria</option>
-                            <option value="Burkina Faso">Burkina Faso</option>
-                            <option value="Burundi">Burundi</option>
-                            <option value="Cambodia">Cambodia</option>
-                            <option value="Cameroon">Cameroon</option>
-                            <option value="Canada">Canada</option>
-                            <option value="Cape Verde">Cape Verde</option>
-                            <option value="Central African Republic">Central African Republic</option>
-                            <option value="Chad">Chad</option>
-                            <option value="Chile">Chile</option>
-                            <option value="China">China</option>
-                            <option value="Colombia">Colombia</option>
-                            <option value="Comoros">Comoros</option>
-                            <option value="Congo">Congo</option>
-                            <option value="Costa Rica">Costa Rica</option>
-                            <option value="Cote d'Ivoire">Cote d'Ivoire</option>
-                            <option value="Croatia">Croatia</option>
-                            <option value="Cuba">Cuba</option>
-                            <option value="Cyprus">Cyprus</option>
-                            <option value="Czech Republic">Czech Republic</option>
-                            <option value="Denmark">Denmark</option>
-                            <option value="Djibouti">Djibouti</option>
-                            <option value="Dominica">Dominica</option>
-                            <option value="Dominican Republic">Dominican Republic</option>
-                            <option value="East Timor">East Timor</option>
-                            <option value="Ecuador">Ecuador</option>
-                            <option value="Egypt">Egypt</option>
-                            <option value="El Salvador">El Salvador</option>
-                            <option value="Equatorial Guinea">Equatorial Guinea</option>
-                            <option value="Eritrea">Eritrea</option>
-                            <option value="Estonia">Estonia</option>
-                            <option value="Ethiopia">Ethiopia</option>
-                            <option value="Fiji">Fiji</option>
-                            <option value="Finland">Finland</option>
-                            <option value="France">France</option>
-                            <option value="Gabon">Gabon</option>
-                            <option value="Gambia">Gambia</option>
-                            <option value="Georgia">Georgia</option>
-                            <option value="Germany">Germany</option>
-                            <option value="Ghana">Ghana</option>
-                            <option value="Greece">Greece</option>
-                            <option value="Grenada">Grenada</option>
-                            <option value="Guatemala">Guatemala</option>
-                            <option value="Guinea">Guinea</option>
-                            <option value="Guinea-Bissau">Guinea-Bissau</option>
-                            <option value="Guyana">Guyana</option>
-                            <option value="Haiti">Haiti</option>
-                            <option value="Honduras">Honduras</option>
-                            <option value="Hong Kong">Hong Kong</option>
-                            <option value="Hungary">Hungary</option>
-                            <option value="Iceland">Iceland</option>
-                            <option value="India">India</option>
-                            <option value="Indonesia">Indonesia</option>
-                            <option value="Iran">Iran</option>
-                            <option value="Iraq">Iraq</option>
-                            <option value="Ireland">Ireland</option>
-                            <option value="Israel">Israel</option>
-                            <option value="Italy">Italy</option>
-                            <option value="Jamaica">Jamaica</option>
-                            <option value="Japan">Japan</option>
-                            <option value="Jordan">Jordan</option>
-                            <option value="Kazakhstan">Kazakhstan</option>
-                            <option value="Kenya">Kenya</option>
-                            <option value="Kiribati">Kiribati</option>
-                            <option value="North Korea">North Korea</option>
-                            <option value="South Korea">South Korea</option>
-                            <option value="Kuwait">Kuwait</option>
-                            <option value="Kyrgyzstan">Kyrgyzstan</option>
-                            <option value="Laos">Laos</option>
-                            <option value="Latvia">Latvia</option>
-                            <option value="Lebanon">Lebanon</option>
-                            <option value="Lesotho">Lesotho</option>
-                            <option value="Liberia">Liberia</option>
-                            <option value="Libya">Libya</option>
-                            <option value="Liechtenstein">Liechtenstein</option>
-                            <option value="Lithuania">Lithuania</option>
-                            <option value="Luxembourg">Luxembourg</option>
-                            <option value="Macedonia">Macedonia</option>
-                            <option value="Madagascar">Madagascar</option>
-                            <option value="Malawi">Malawi</option>
-                            <option value="Malaysia">Malaysia</option>
-                            <option value="Maldives">Maldives</option>
-                            <option value="Mali">Mali</option>
-                            <option value="Malta">Malta</option>
-                            <option value="Marshall Islands">Marshall Islands</option>
-                            <option value="Mauritania">Mauritania</option>
-                            <option value="Mauritius">Mauritius</option>
-                            <option value="Mexico">Mexico</option>
-                            <option value="Micronesia">Micronesia</option>
-                            <option value="Moldova">Moldova</option>
-                            <option value="Monaco">Monaco</option>
-                            <option value="Mongolia">Mongolia</option>
-                            <option value="Montenegro">Montenegro</option>
-                            <option value="Morocco">Morocco</option>
-                            <option value="Mozambique">Mozambique</option>
-                            <option value="Myanmar">Myanmar</option>
-                            <option value="Namibia">Namibia</option>
-                            <option value="Nauru">Nauru</option>
-                            <option value="Nepal">Nepal</option>
-                            <option value="Netherlands">Netherlands</option>
-                            <option value="New Zealand">New Zealand</option>
-                            <option value="Nicaragua">Nicaragua</option>
-                            <option value="Niger">Niger</option>
-                            <option value="Nigeria">Nigeria</option>
-                            <option value="Norway">Norway</option>
-                            <option value="Oman">Oman</option>
-                            <option value="Pakistan">Pakistan</option>
-                            <option value="Palau">Palau</option>
-                            <option value="Panama">Panama</option>
-                            <option value="Papua New Guinea">Papua New Guinea</option>
-                            <option value="Paraguay">Paraguay</option>
-                            <option value="Peru">Peru</option>
-                            <option value="Philippines">Philippines</option>
-                            <option value="Poland">Poland</option>
-                            <option value="Portugal">Portugal</option>
-                            <option value="Puerto Rico">Puerto Rico</option>
-                            <option value="Qatar">Qatar</option>
-                            <option value="Romania">Romania</option>
-                            <option value="Russia">Russia</option>
-                            <option value="Rwanda">Rwanda</option>
-                            <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-                            <option value="Saint Lucia">Saint Lucia</option>
-                            <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
-                            <option value="Samoa">Samoa</option>
-                            <option value="San Marino">San Marino</option>
-                            <option value="Sao Tome and Principe">Sao Tome and Principe</option>
-                            <option value="Saudi Arabia">Saudi Arabia</option>
-                            <option value="Senegal">Senegal</option>
-                            <option value="Serbia and Montenegro">Serbia and Montenegro</option>
-                            <option value="Seychelles">Seychelles</option>
-                            <option value="Sierra Leone">Sierra Leone</option>
-                            <option value="Singapore">Singapore</option>
-                            <option value="Slovakia">Slovakia</option>
-                            <option value="Slovenia">Slovenia</option>
-                            <option value="Solomon Islands">Solomon Islands</option>
-                            <option value="Somalia">Somalia</option>
-                            <option value="South Africa">South Africa</option>
-                            <option value="Spain">Spain</option>
-                            <option value="Sri Lanka">Sri Lanka</option>
-                            <option value="Sudan">Sudan</option>
-                            <option value="Suriname">Suriname</option>
-                            <option value="Swaziland">Swaziland</option>
-                            <option value="Sweden">Sweden</option>
-                            <option value="Switzerland">Switzerland</option>
-                            <option value="Syria">Syria</option>
-                            <option value="Taiwan">Taiwan</option>
-                            <option value="Tajikistan">Tajikistan</option>
-                            <option value="Tanzania">Tanzania</option>
-                            <option value="Thailand">Thailand</option>
-                            <option value="Togo">Togo</option>
-                            <option value="Tonga">Tonga</option>
-                            <option value="Trinidad and Tobago">Trinidad and Tobago</option>
-                            <option value="Tunisia">Tunisia</option>
-                            <option value="Turkey">Turkey</option>
-                            <option value="Turkmenistan">Turkmenistan</option>
-                            <option value="Tuvalu">Tuvalu</option>
-                            <option value="Uganda">Uganda</option>
-                            <option value="Ukraine">Ukraine</option>
-                            <option value="United Arab Emirates">United Arab Emirates</option>
-                            <option value="United Kingdom">United Kingdom</option>
-                            <option value="United States">United States</option>
-                            <option value="Uruguay">Uruguay</option>
-                            <option value="Uzbekistan">Uzbekistan</option>
-                            <option value="Vanuatu">Vanuatu</option>
-                            <option value="Vatican City">Vatican City</option>
-                            <option value="Venezuela">Venezuela</option>
-                            <option value="Vietnam">Vietnam</option>
-                            <option value="Yemen">Yemen</option>
-                            <option value="Zambia">Zambia</option>
-                            <option value="Zimbabwe">Zimbabwe</option>
-                          </select>
-                          <span>Country</span>
-                        </label>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="form-group has-float-label">
+                            <select class="form-control custom-select" name="country" formControlName="country">
+                              <option value="Afghanistan">Afghanistan</option>
+                              <option value="Albania">Albania</option>
+                              <option value="Algeria">Algeria</option>
+                              <option value="Andorra">Andorra</option>
+                              <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                              <option value="Argentina">Argentina</option>
+                              <option value="Armenia">Armenia</option>
+                              <option value="Australia">Australia</option>
+                              <option value="Austria">Austria</option>
+                              <option value="Azerbaijan">Azerbaijan</option>
+                              <option value="Bahamas">Bahamas</option>
+                              <option value="Bahrain">Bahrain</option>
+                              <option value="Bangladesh">Bangladesh</option>
+                              <option value="Barbados">Barbados</option>
+                              <option value="Belarus">Belarus</option>
+                              <option value="Belgium">Belgium</option>
+                              <option value="Belize">Belize</option>
+                              <option value="Benin">Benin</option>
+                              <option value="Bhutan">Bhutan</option>
+                              <option value="Bolivia">Bolivia</option>
+                              <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                              <option value="Botswana">Botswana</option>
+                              <option value="Brazil">Brazil</option>
+                              <option value="Brunei">Brunei</option>
+                              <option value="Bulgaria">Bulgaria</option>
+                              <option value="Burkina Faso">Burkina Faso</option>
+                              <option value="Burundi">Burundi</option>
+                              <option value="Cambodia">Cambodia</option>
+                              <option value="Cameroon">Cameroon</option>
+                              <option value="Canada">Canada</option>
+                              <option value="Cape Verde">Cape Verde</option>
+                              <option value="Central African Republic">Central African Republic</option>
+                              <option value="Chad">Chad</option>
+                              <option value="Chile">Chile</option>
+                              <option value="China">China</option>
+                              <option value="Colombia">Colombia</option>
+                              <option value="Comoros">Comoros</option>
+                              <option value="Congo">Congo</option>
+                              <option value="Costa Rica">Costa Rica</option>
+                              <option value="Cote d'Ivoire">Cote d'Ivoire</option>
+                              <option value="Croatia">Croatia</option>
+                              <option value="Cuba">Cuba</option>
+                              <option value="Cyprus">Cyprus</option>
+                              <option value="Czech Republic">Czech Republic</option>
+                              <option value="Denmark">Denmark</option>
+                              <option value="Djibouti">Djibouti</option>
+                              <option value="Dominica">Dominica</option>
+                              <option value="Dominican Republic">Dominican Republic</option>
+                              <option value="East Timor">East Timor</option>
+                              <option value="Ecuador">Ecuador</option>
+                              <option value="Egypt">Egypt</option>
+                              <option value="El Salvador">El Salvador</option>
+                              <option value="Equatorial Guinea">Equatorial Guinea</option>
+                              <option value="Eritrea">Eritrea</option>
+                              <option value="Estonia">Estonia</option>
+                              <option value="Ethiopia">Ethiopia</option>
+                              <option value="Fiji">Fiji</option>
+                              <option value="Finland">Finland</option>
+                              <option value="France">France</option>
+                              <option value="Gabon">Gabon</option>
+                              <option value="Gambia">Gambia</option>
+                              <option value="Georgia">Georgia</option>
+                              <option value="Germany">Germany</option>
+                              <option value="Ghana">Ghana</option>
+                              <option value="Greece">Greece</option>
+                              <option value="Grenada">Grenada</option>
+                              <option value="Guatemala">Guatemala</option>
+                              <option value="Guinea">Guinea</option>
+                              <option value="Guinea-Bissau">Guinea-Bissau</option>
+                              <option value="Guyana">Guyana</option>
+                              <option value="Haiti">Haiti</option>
+                              <option value="Honduras">Honduras</option>
+                              <option value="Hong Kong">Hong Kong</option>
+                              <option value="Hungary">Hungary</option>
+                              <option value="Iceland">Iceland</option>
+                              <option value="India">India</option>
+                              <option value="Indonesia">Indonesia</option>
+                              <option value="Iran">Iran</option>
+                              <option value="Iraq">Iraq</option>
+                              <option value="Ireland">Ireland</option>
+                              <option value="Israel">Israel</option>
+                              <option value="Italy">Italy</option>
+                              <option value="Jamaica">Jamaica</option>
+                              <option value="Japan">Japan</option>
+                              <option value="Jordan">Jordan</option>
+                              <option value="Kazakhstan">Kazakhstan</option>
+                              <option value="Kenya">Kenya</option>
+                              <option value="Kiribati">Kiribati</option>
+                              <option value="North Korea">North Korea</option>
+                              <option value="South Korea">South Korea</option>
+                              <option value="Kuwait">Kuwait</option>
+                              <option value="Kyrgyzstan">Kyrgyzstan</option>
+                              <option value="Laos">Laos</option>
+                              <option value="Latvia">Latvia</option>
+                              <option value="Lebanon">Lebanon</option>
+                              <option value="Lesotho">Lesotho</option>
+                              <option value="Liberia">Liberia</option>
+                              <option value="Libya">Libya</option>
+                              <option value="Liechtenstein">Liechtenstein</option>
+                              <option value="Lithuania">Lithuania</option>
+                              <option value="Luxembourg">Luxembourg</option>
+                              <option value="Macedonia">Macedonia</option>
+                              <option value="Madagascar">Madagascar</option>
+                              <option value="Malawi">Malawi</option>
+                              <option value="Malaysia">Malaysia</option>
+                              <option value="Maldives">Maldives</option>
+                              <option value="Mali">Mali</option>
+                              <option value="Malta">Malta</option>
+                              <option value="Marshall Islands">Marshall Islands</option>
+                              <option value="Mauritania">Mauritania</option>
+                              <option value="Mauritius">Mauritius</option>
+                              <option value="Mexico">Mexico</option>
+                              <option value="Micronesia">Micronesia</option>
+                              <option value="Moldova">Moldova</option>
+                              <option value="Monaco">Monaco</option>
+                              <option value="Mongolia">Mongolia</option>
+                              <option value="Montenegro">Montenegro</option>
+                              <option value="Morocco">Morocco</option>
+                              <option value="Mozambique">Mozambique</option>
+                              <option value="Myanmar">Myanmar</option>
+                              <option value="Namibia">Namibia</option>
+                              <option value="Nauru">Nauru</option>
+                              <option value="Nepal">Nepal</option>
+                              <option value="Netherlands">Netherlands</option>
+                              <option value="New Zealand">New Zealand</option>
+                              <option value="Nicaragua">Nicaragua</option>
+                              <option value="Niger">Niger</option>
+                              <option value="Nigeria">Nigeria</option>
+                              <option value="Norway">Norway</option>
+                              <option value="Oman">Oman</option>
+                              <option value="Pakistan">Pakistan</option>
+                              <option value="Palau">Palau</option>
+                              <option value="Panama">Panama</option>
+                              <option value="Papua New Guinea">Papua New Guinea</option>
+                              <option value="Paraguay">Paraguay</option>
+                              <option value="Peru">Peru</option>
+                              <option value="Philippines">Philippines</option>
+                              <option value="Poland">Poland</option>
+                              <option value="Portugal">Portugal</option>
+                              <option value="Puerto Rico">Puerto Rico</option>
+                              <option value="Qatar">Qatar</option>
+                              <option value="Romania">Romania</option>
+                              <option value="Russia">Russia</option>
+                              <option value="Rwanda">Rwanda</option>
+                              <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                              <option value="Saint Lucia">Saint Lucia</option>
+                              <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                              <option value="Samoa">Samoa</option>
+                              <option value="San Marino">San Marino</option>
+                              <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                              <option value="Saudi Arabia">Saudi Arabia</option>
+                              <option value="Senegal">Senegal</option>
+                              <option value="Serbia and Montenegro">Serbia and Montenegro</option>
+                              <option value="Seychelles">Seychelles</option>
+                              <option value="Sierra Leone">Sierra Leone</option>
+                              <option value="Singapore">Singapore</option>
+                              <option value="Slovakia">Slovakia</option>
+                              <option value="Slovenia">Slovenia</option>
+                              <option value="Solomon Islands">Solomon Islands</option>
+                              <option value="Somalia">Somalia</option>
+                              <option value="South Africa">South Africa</option>
+                              <option value="Spain">Spain</option>
+                              <option value="Sri Lanka">Sri Lanka</option>
+                              <option value="Sudan">Sudan</option>
+                              <option value="Suriname">Suriname</option>
+                              <option value="Swaziland">Swaziland</option>
+                              <option value="Sweden">Sweden</option>
+                              <option value="Switzerland">Switzerland</option>
+                              <option value="Syria">Syria</option>
+                              <option value="Taiwan">Taiwan</option>
+                              <option value="Tajikistan">Tajikistan</option>
+                              <option value="Tanzania">Tanzania</option>
+                              <option value="Thailand">Thailand</option>
+                              <option value="Togo">Togo</option>
+                              <option value="Tonga">Tonga</option>
+                              <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                              <option value="Tunisia">Tunisia</option>
+                              <option value="Turkey">Turkey</option>
+                              <option value="Turkmenistan">Turkmenistan</option>
+                              <option value="Tuvalu">Tuvalu</option>
+                              <option value="Uganda">Uganda</option>
+                              <option value="Ukraine">Ukraine</option>
+                              <option value="United Arab Emirates">United Arab Emirates</option>
+                              <option value="United Kingdom">United Kingdom</option>
+                              <option value="United States">United States</option>
+                              <option value="Uruguay">Uruguay</option>
+                              <option value="Uzbekistan">Uzbekistan</option>
+                              <option value="Vanuatu">Vanuatu</option>
+                              <option value="Vatican City">Vatican City</option>
+                              <option value="Venezuela">Venezuela</option>
+                              <option value="Vietnam">Vietnam</option>
+                              <option value="Yemen">Yemen</option>
+                              <option value="Zambia">Zambia</option>
+                              <option value="Zimbabwe">Zimbabwe</option>
+                            </select>
+                            <span>Country</span>
+                            <small *ngIf="step1Form.controls['country'].hasError('required') && step1Form.controls['country'].touched" class="font-small-1 text-danger">
+                              Country is required
+                            </small>
+                          </label>
+
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-12">
-                      <p>By clicking this button, you agree to SMART Fertilizer's
-                        <br>
-                        <a style="border-bottom: 1px solid;"> Anti-spam Policy & Terms of Use. </a>
-                      </p>
+                      <div class="col-md-12">
+                        <p>By clicking this button, you agree to SMART Fertilizer's
+                          <br>
+                          <a style="border-bottom: 1px solid;"> Anti-spam Policy & Terms of Use. </a>
+                        </p>
+                      </div>
                     </div>
                   </div>
+                  <div class="col-md-6" style="padding-top:40px;">
+                    <p>
+                      <i class="fa fa-star">
+                      </i>
+                      For filling out the form you will need your
+                      <strong>latest soil test.</strong>
+                    </p>
+                    <p>
+                      <i class="fa fa-star">
+                      </i>
+                      If you are growing Hydropnics "SMART lite" isn't for you.
+                      <br> Please consider using our
+                      <a style="border-bottom: 1px solid;font-style: italic;">Premium solution. </a>
+                    </p>
+                    <p>
+                      <i class="fa fa-star"> </i> If you are using fertigation, SMART Lite will deliver a suitable fertilizer plan, but without
+                      solution ratio.
+                    </p>
+                  </div>
                 </div>
-                <div class="col-md-6" style="padding-top:40px;">
-                  <p>
-                    <i class="fa fa-star">
-                    </i>
-                    For filling out the form you will need your
-                    <strong>latest soil test.</strong>
-                  </p>
-                  <p>
-                    <i class="fa fa-star">
-                    </i>
-                    If you are growing Hydropnics "SMART lite" isn't for you.
-                    <br> Please consider using our
-                    <a style="border-bottom: 1px solid;font-style: italic;">Premium solution. </a>
-                  </p>
-                  <p>
-                    <i class="fa fa-star"> </i> If you are using fertigation, SMART Lite will deliver a suitable fertilizer plan, but without solution
-                    ratio.
-                  </p>
-                </div>
-              </div>
-              <button type="button" class="btn-wiz btn" awNextStep>Next</button>
+                <button type="submit" class="btn-wiz btn" [disabled]="step1Form.invalid" awNextStep>NEXT</button>
+              </form>
             </aw-wizard-step>
             <aw-wizard-step stepTitle="Step 2" awOptionalStep>
-              <div class="row">
-                <div class="col-md-6">
-                  <h3 class="fgreen">Tell us about your crops</h3>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <form>
+              <form [formGroup]="step2Form" (ngSubmit)="step2()">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h3 class="fgreen">Tell us about your crops</h3>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
                           <div class="position-relative has-icon-right dropdown ">
-                            <input class="form-control" [(ngModel)]="selectedCrop" [ngModelOptions]="{standalone: true}" placeholder="Search" type="text"
-                              placeholder="Type crop name">
+                            <input class="form-control" name="cropName" formControlName="cropName" placeholder="Search" type="text" placeholder="Type crop name">
                             <div class="form-control-position ">
                               <i class="ft-search"></i>
                             </div>
@@ -310,200 +329,253 @@
                               </div>
                             </div>
                           </div>
-                        </form>
+                          <small *ngIf="step2Form.controls['cropName'].hasError('required') && step2Form.controls['cropName'].touched" class="font-small-1 text-danger">
+                            Crop Name is required
+                          </small>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="form-group has-float-label">
+                            <select class="form-control custom-select" name="variety" formControlName="variety" (change)="changeText2($event.target.value)">
+                              <option *ngFor="let item of varietyData" value="{{item.Id}}">{{item.Name}}</option>
+                            </select>
+                            <span>Choose crop variety</span>
+                            <small *ngIf="step2Form.controls['variety'].hasError('required') && step2Form.controls['variety'].touched" class="font-small-1 text-danger">
+                              Variety is required
+                            </small>
+                          </label>
 
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="form-group has-float-label">
-                          <select class="form-control custom-select" (change)="changeText2($event.target.value)" [disabled]="isVarietry">
-                            <option *ngFor="let item of varietyData" value="{{item.Id}}">{{item.Name}}</option>
-                          </select>
-                          <span>Choose crop variety</span>
-                        </label>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="form-group has-float-label">
+                            <select class="form-control custom-select" name="specifics" formControlName="specifics">
+                              <option *ngFor="let item of soilType" value="{{item.Name}}">{{item.Name}}</option>
+                            </select>
+                            <span>Specifics</span>
+                            <small *ngIf="step2Form.controls['specifics'].hasError('required') && step2Form.controls['specifics'].touched" class="font-small-1 text-danger">
+                              Specifics is required
+                            </small>
+                          </label>
+
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="form-group has-float-label">
-                          <select class="form-control custom-select" [disabled]="isSpecific">
-                            <option *ngFor="let item of soilType" value="{{item.Id}}">{{item.Name}}</option>
-                          </select>
-                          <span>Specifics</span>
-                        </label>
+                      <div class="col-md-8">
+                        <div class="form-group">
+                          <label class="form-group has-float-label">
+                            <select class="form-control custom-select" name="plotSize" formControlName="plotSize">
+                              <option value="Hectare">Hectare</option>
+                              <option value="Acre">Acre</option>
+                            </select>
+                            <span>Plot size</span>
+                            <small *ngIf="step2Form.controls['plotSize'].hasError('required') && step2Form.controls['plotSize'].touched" class="font-small-1 text-danger">
+                                Plot Size is required
+                            </small>
+                          </label>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="form-group">
-                        <span class="has-float-label">
-                          <input class="form-control" id="plot" type="text" placeholder="Size" />
-                          <label for="first">Plot size</label>
-                        </span>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-group has-float-label">
+                            <select class="form-control custom-select" name="plotSizeUnit" formControlName="plotSizeUnit">
+                              <option *ngFor="let item of unitesData" [value]="item.name">{{item.name}}</option>
+                            </select>
+                            <span>Unit</span>
+                            <small *ngIf="step2Form.controls['plotSizeUnit'].hasError('required') && step2Form.controls['plotSizeUnit'].touched" class="font-small-1 text-danger">
+                              Plot Size Unit is required
+                            </small>
+                          </label>
+
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="form-group has-float-label">
-                          <select class="form-control custom-select">
-                            <option *ngFor="let item of unitesData" [value]="item.name">{{item.name}}</option>
-                          </select>
-                          <span>Unit</span>
-                        </label>
+                      <div class="col-md-8">
+                        <div class="form-group">
+                          <label class="form-group has-float-label">
+                            <select class="form-control custom-select" name="averageYield" formControlName="averageYield">
+                              <option value="mt/Hectare">mt/Hectare</option>
+                              <option value="ton/Acre">ton/Acre</option>
+                            </select>
+                            <span>Average yield</span>
+                            <small *ngIf="step2Form.controls['averageYield'].hasError('required') && step2Form.controls['averageYield'].touched" class="font-small-1 text-danger">
+                              Average Yield is required
+                            </small>
+                          </label>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="form-group">
-                        <span class="has-float-label">
-                          <input class="form-control" id="yield" type="text" placeholder="Yield" />
-                          <label for="yield">Average yield</label>
-                        </span>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="form-group has-float-label">
-                          <select class="form-control custom-select">
-                            <option *ngFor="let item of unitesData" [value]="item.name">{{item.name}}</option>
-                          </select>
-                          <span>Unit</span>
-                        </label>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-group has-float-label">
+                            <select class="form-control custom-select" name="averageYieldUnit" formControlName="averageYieldUnit">
+                              <option *ngFor="let item of unitesData" [value]="item.name">{{item.name}}</option>
+                            </select>
+                            <span>Unit</span>
+                            <small *ngIf="step2Form.controls['averageYieldUnit'].hasError('required') && step2Form.controls['averageYieldUnit'].touched"
+                              class="font-small-1 text-danger">
+                              Average Yield Unit is required
+                            </small>
+                          </label>
+
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div style="padding-top: 245px;" class="fgreen col-md-6">
+                    <table>
+                      <tr>
+                        <td style="width: 40px;">
+                          <i class="fa icon-info fa-2x">
+                          </i>
+                        </td>
+                        <td>
+                          If this is your first year growing this crop and you have no average yield,
+                          <br> please lookup average yields in your area.
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
                 </div>
-                <div style="padding-top: 245px;" class="fgreen col-md-6">
-                  <table>
-                    <tr>
-                      <td style="width: 40px;">
-                        <i class="fa icon-info fa-2x">
-                        </i>
-                      </td>
-                      <td>
-                        If this is your first year growing this crop and you have no average yield,
-                        <br> please lookup average yields in your area.
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-              <button type="button" class="btn-custom btn" awPreviousStep>Back</button>
-              <button type="button" class="btn-wiz btn" awNextStep>Next</button>
+                <button type="button" class="btn-custom btn" awPreviousStep>BACK</button>
+                <button type="submit" class="btn-wiz btn" [disabled]="step2Form.invalid" awNextStep>NEXT</button>
+              </form>
             </aw-wizard-step>
             <aw-wizard-step stepTitle="Step 3">
-              <div class="row">
-                <div class="col-md-12">
-                  <h3 class="fgreen">Your soil composition (Latest soil test is now required)</h3>
-                </div>
-                <div class="col-md-12">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label class="form-group has-float-label">
-                          <select class="form-control custom-select">
-                            <option value="1">Sandy</option>
-                            <option value="2">Sandy Loam</option>
-                            <option value="3">Silt</option>
-                            <option value="4">Silt Loam</option>
-                            <option value="5">Silty Clay</option>
-                            <option value="6">Loam</option>
-                            <option value="7">Sandy Clay </option>
-                            <option value="8">Clay Loam</option>
-                            <option value="9">Clay</option>
-                          </select>
-                          <span>Soil Texture</span>
-                        </label>
+              <form [formGroup]="step3Form" (ngSubmit)="step3()">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h3 class="fgreen">Your soil composition (Latest soil test is now required)</h3>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-group has-float-label">
+                            <select class="form-control custom-select" name="texture" formControlName="texture">
+                              <option value="Sandy">Sandy</option>
+                              <option value="Sandy Loam">Sandy Loam</option>
+                              <option value="Silt">Silt</option>
+                              <option value="Silt Loam">Silt Loam</option>
+                              <option value="Silty Clay">Silty Clay</option>
+                              <option value="Loam">Loam</option>
+                              <option value="Sandy Cla">Sandy Clay </option>
+                              <option value="Clay Loam">Clay Loam</option>
+                              <option value="Clay">Clay</option>
+                            </select>
+                            <span>Soil Texture</span>
+                            <small *ngIf="step3Form.controls['texture'].hasError('required') && step3Form.controls['texture'].touched" class="font-small-1 text-danger">
+                              Texture is required
+                            </small>
+                          </label>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-md-3">
+                      <div class="col-md-3">
 
-                      <div class="form-group">
-                        <form>
+                        <div class="form-group">
                           <div class="position-relative has-icon-right">
-                            <input class="form-control" type="text" placeholder="Organic Matter">
+                            <input class="form-control" type="text" placeholder="Organic Matter" name="organicMatter" formControlName="organicMatter">
                             <div class="form-control-position">
                               <i class="ft-percent"></i>
                             </div>
+                            <small *ngIf="step3Form.controls['organicMatter'].hasError('required') && step3Form.controls['organicMatter'].touched" class="font-small-1 text-danger">
+                              Organic Matter is required
+                            </small>
                           </div>
-                        </form>
-                      </div>
+                        </div>
 
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <span class="has-float-label">
+                            <input class="form-control" id="ph" type="text" placeholder="pH" name="ph" formControlName="ph" />
+                            <label for="ph">pH</label>
+                          </span>
+                          <small *ngIf="step3Form.controls['ph'].hasError('required') && step3Form.controls['ph'].touched" class="font-small-1 text-danger">
+                            ph is required
+                          </small>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-md-3">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <h3 class="fgreen">
+                      <strong>Nutrient</strong>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3 class="fgreen">
+                      <strong>Extraction method</strong>
+                    </h3>
+                  </div>
+                  <div class="col-md-4">
+                    <h3 class="fgreen">
+                      <strong>Value</strong>
+                    </h3>
+                  </div>
+                </div>
+                <div formArrayName="nutrientData">
+                  <div class="row" *ngFor="let item of alldata; let i=index" [formGroupName]="i">
+                    <div class="col-md-4">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="form-group has-float-label">
+                              <select class="form-control custom-select" name="nutrient" formControlName="nutrient">
+                                <option *ngFor="let nu of item.nutrients" [value]="nu.value.id">{{nu.value.name}}</option>
+                              </select>
+                              <span>Nutrient</span>
+                              <small *ngIf="step3Form.controls['nutrientData'].hasError('required') && step3Form.controls['nutrientData'].touched" class="font-small-1 text-danger">
+                                Nutrient is required
+                              </small>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="form-group has-float-label">
+                              <select class="form-control custom-select" name="nutrientUnit" formControlName="nutrientUnit">
+                                <option *ngFor="let item of unitesData" [value]="item.name">{{item.name}}</option>
+                              </select>
+                              <span>Unit</span>
+                              <small *ngIf="step3Form.controls['nutrientData'].hasError('required') && step3Form.controls['nutrientData'].touched" class="font-small-1 text-danger">
+                                Nutrient is required
+                              </small>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="form-group has-float-label">
+                          <select class="form-control custom-select" name="extMethod" formControlName="extMethod">
+                            <option *ngFor="let ext of item.extMethod" [value]="ext.value.id">{{ext.value.name}}</option>
+                          </select>
+                          <span>Select Extraction method</span>
+                          <small *ngIf="step3Form.controls['nutrientData'].hasError('required') && step3Form.controls['nutrientData'].touched" class="font-small-1 text-danger">
+                            Extraction method is required
+                          </small>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
                       <div class="form-group">
                         <span class="has-float-label">
-                          <input class="form-control" id="ph" type="text" placeholder="pH" />
-                          <label for="ph">pH</label>
+                          <input class="form-control" id="value" type="text" placeholder="value" name="value" formControlName="value" />
+                          <label for="value">Enter value</label>
+                          <small *ngIf="step3Form.controls['nutrientData'].hasError('required') && step3Form.controls['nutrientData'].touched" class="font-small-1 text-danger">
+                            Value is required
+                          </small>
                         </span>
                       </div>
                     </div>
                   </div>
-
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <h3 class="fgreen">
-                    <strong>Nutrient</strong>
-                  </h3>
-                </div>
-                <div class="col-md-4">
-                  <h3 class="fgreen">
-                    <strong>Extraction method</strong>
-                  </h3>
-                </div>
-                <div class="col-md-4">
-                  <h3 class="fgreen">
-                    <strong>Value</strong>
-                  </h3>
-                </div>
-              </div>
-              <div class="row" *ngFor="let item of alldata">
-                <div class="col-md-4">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label class="form-group has-float-label">
-                          <select class="form-control custom-select">
-                            <option *ngFor="let nu of item.nutrients" [value]="nu.value.name">{{nu.value.name}}</option>
-                          </select>
-                          <span>Nutrient</span>
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label class="form-group has-float-label">
-                          <select class="form-control custom-select">
-                            <option *ngFor="let item of unitesData" [value]="item.name">{{item.name}}</option>
-                          </select>
-                          <span>Unit</span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label class="form-group has-float-label">
-                      <select class="form-control custom-select">
-                        <option *ngFor="let ext of item.extMethod" [value]="ext.value.name">{{ext.value.name}}</option>
-                      </select>
-                      <span>Select Extraction method</span>
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <span class="has-float-label">
-                      <input class="form-control" id="value" type="text" placeholder="value" />
-                      <label for="value">Enter value</label>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <button type="button" class="btn-custom btn" awPreviousStep>Back</button>
-              <button type="button" class="btn-wiz btn" awNextStep>Next</button>
+                <button type="button" class="btn-custom btn" awPreviousStep>BACK</button>
+                <button type="submit" class="btn-wiz btn" [disabled]="step3Form.invalid" awNextStep>NEXT</button>
+              </form>
             </aw-wizard-step>
             <aw-wizard-step stepTitle="Step 4">
               <div class="row">
@@ -514,13 +586,13 @@
                   <div class="row">
                     <div class="col-md-5">
                       <h3>
-                        <strong>Smythson Robert from Ohaio</strong>
+                        <strong>{{form1?.firstName}} {{form1?.lastName}} from {{form1?.country}}</strong>
                       </h3>
                       <h3>
-                        <strong>Email: rob1@gmail.com</strong>
+                        <strong>Email: {{form1?.email}}</strong>
                       </h3>
                       <br>
-                      <button class="btn btn-custom">CHANGE</button>
+                      <button class="btn btn-custom" [awGoToStep]="{ stepIndex: 0 }">CHANGE</button>
                       <hr>
                       <h3>
                         <strong>Crops</strong>
@@ -528,27 +600,27 @@
                       <table style="width:100%;">
                         <tr>
                           <td>Name:</td>
-                          <th>Aloe Vera</th>
+                          <th>{{form2?.cropName}}</th>
                         </tr>
                         <tr>
                           <td>Variety:</td>
-                          <th>Some variety</th>
+                          <th>{{varietyName}}</th>
                         </tr>
                         <tr>
                           <td>Specifics:</td>
-                          <th>some specifics</th>
+                          <th>{{form2?.specifics}}</th>
                         </tr>
                         <tr>
                           <td>Plot size:</td>
-                          <th>1500 acre</th>
+                          <th>{{form2?.plotSize}} {{form2?.plotSizeUnit}}</th>
                         </tr>
                         <tr>
                           <td>Average yield:</td>
-                          <th>2 Tons/acre</th>
+                          <th>{{form2?.averageYield}} {{form2?.averageYieldUnit}}</th>
                         </tr>
                       </table>
                       <br>
-                      <button class="btn btn-custom">CHANGE</button>
+                      <button class="btn btn-custom" [awGoToStep]="{ stepIndex: 1 }">CHANGE</button>
                       <hr>
                       <h3>
                         <strong>Soil</strong>
@@ -556,116 +628,46 @@
                       <table style="width:100%;">
                         <tr>
                           <td>Texture:</td>
-                          <th>Sandy Loam</th>
+                          <th>{{form3?.texture}}</th>
                         </tr>
                         <tr>
                           <td>Organic material:</td>
-                          <th>3.25656%</th>
+                          <th>{{form3?.organicMatter}}%</th>
                         </tr>
                         <tr>
                           <td>pH:</td>
-                          <th>7.2</th>
+                          <th>{{form3?.ph}}</th>
                         </tr>
                       </table>
                       <br>
-                      <button class="btn btn-custom">CHANGE</button>
+                      <button class="btn btn-custom" [awGoToStep]="{ stepIndex: 2 }">CHANGE</button>
                     </div>
                     <div class="col-md-7">
                       <h3>
                         <strong>Soil nutrition</strong>
                       </h3>
                       <table style="width:100%;">
-                        <tr>
-                          <td>NH4</td>
-                          <th>Extract 1:2</th>
-                          <th>1250.7</th>
-                          <th>meg/L</th>
-                        </tr>
-                        <tr>
-                          <td>H2PO4</td>
-                          <th>Modified Oslen</th>
-                          <th>0.3656</th>
-                          <th>meg/L</th>
-                        </tr>
-                        <tr>
-                          <td>NH4</td>
-                          <th>Extract 1:2</th>
-                          <th>1250.7</th>
-                          <th>meg/L</th>
-                        </tr>
-                        <tr>
-                          <td>H2PO4</td>
-                          <th>Modified Oslen</th>
-                          <th>0.3656</th>
-                          <th>meg/L</th>
-                        </tr>
-
-                        <tr>
-                          <td>NH4</td>
-                          <th>Extract 1:2</th>
-                          <th>1250.7</th>
-                          <th>meg/L</th>
-                        </tr>
-                        <tr>
-                          <td>H2PO4</td>
-                          <th>Modified Oslen</th>
-                          <th>0.3656</th>
-                          <th>meg/L</th>
-                        </tr>
-
-                        <tr>
-                          <td>NH4</td>
-                          <th>Extract 1:2</th>
-                          <th>1250.7</th>
-                          <th>meg/L</th>
-                        </tr>
-                        <tr>
-                          <td>H2PO4</td>
-                          <th>Modified Oslen</th>
-                          <th>0.3656</th>
-                          <th>meg/L</th>
-                        </tr>
-
-                        <tr>
-                          <td>NH4</td>
-                          <th>Extract 1:2</th>
-                          <th>1250.7</th>
-                          <th>meg/L</th>
-                        </tr>
-                        <tr>
-                          <td>H2PO4</td>
-                          <th>Modified Oslen</th>
-                          <th>0.3656</th>
-                          <th>meg/L</th>
-                        </tr>
-
-                        <tr>
-                          <td>NH4</td>
-                          <th>Extract 1:2</th>
-                          <th>1250.7</th>
-                          <th>meg/L</th>
-                        </tr>
-                        <tr>
-                          <td>H2PO4</td>
-                          <th>Modified Oslen</th>
-                          <th>0.3656</th>
-                          <th>meg/L</th>
+                        <tr *ngFor="let item of form3?.nutrientData;let i=index">
+                          <td >  {{item.nutrient}}</td>
+                          <th>{{item.extMethod}}</th>
+                          <th>{{item.value}}</th>
+                          <th>{{item.nutrientUnit}}</th>
                         </tr>
                       </table>
                       <br>
-                      <button class="btn btn-custom">CHANGE</button>
+                      <button class="btn btn-custom" [awGoToStep]="{ stepIndex: 2 }">CHANGE</button>
                     </div>
                   </div>
                 </div>
               </div>
-              <button type="button" class="btn-custom btn" awPreviousStep>Back</button>
-              <button type="button" class="btn-wiz btn" awNextStep>Next</button>
+              <button type="button" class="btn-custom btn" awPreviousStep>BACK</button>
+              <button type="button" class="btn-wiz btn" (click)="finishFunction()">GET REPORT</button>
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 5">
+            <!-- <aw-wizard-step stepTitle="Step 5">
               <div class="row">
                 <div class="col-md-12">
                   <h3 class="fgreen">Thanks for using SMART</h3>
-                
+
                 </div>
                 <div class="col-md-12">
                   <p>You will receive your fertilizer recommendation shortly delivered to your inbox.</p>
@@ -674,8 +676,8 @@
                 </div>
               </div>
               <button type="button" class="btn-custom btn" awPreviousStep>Back</button>
-              <button type="button" class="btn-wiz btn" (click)="finishFunction()">Finish</button>
-            </aw-wizard-step>
+              <button type="button" class="btn-wiz btn" >Finish</button>
+            </aw-wizard-step> -->
           </aw-wizard>
         </div>
       </div>

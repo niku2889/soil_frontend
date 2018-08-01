@@ -85,11 +85,8 @@ export class SoilService {
     });
   }
 
-  postLogin(username, ip, password) {
+  postLogin() {
     const body = JSON.stringify({
-      "userName": username,
-      "userIp": ip,
-      "password": password
     })
     let  headers = new HttpHeaders();
     headers = headers.set('content-Type', 'application/json;charset=utf-8');

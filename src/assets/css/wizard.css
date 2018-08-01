@@ -299,7 +299,7 @@
   position: absolute;
   font-size: 80%;
   right: 10px;
-  border: 1px solid limegreen;
+  border: 1px solid #dcf7a5;
   padding: 0 8px;
   border-radius: 50px;
   background: white;
@@ -309,7 +309,7 @@
 }
 
 .fgreen{
-  color: forestgreen;
+  color: #6f9c40;
 }
 
 .btn-custom{
@@ -319,7 +319,7 @@
 }
 
 .btn-wiz{
-  background: #588e58!important;
+  background: #9eca45!important;
     color: #fff;
     border: 1px solid forestgreen;
     min-width: 120px;
@@ -330,6 +330,10 @@
     text-transform: uppercase;
     border: 1px solid forestgreen;
 
+}
+
+.btn-wiz:disabled{
+  cursor: not-allowed;
 }
 
 
@@ -407,4 +411,8 @@
 		min-width: 240px !important;
 		overflow-x: hidden;
 	}
+}
+
+.form .form-control{
+  border: 1px solid #dcf7a5!important;
 }
