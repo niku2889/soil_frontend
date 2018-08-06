@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,16 +11,18 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <link href="assets/fonts/feather/style.min.css" rel="stylesheet">
   <link href="assets/fonts/simple-line-icons/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/bootstrap-float-label/v3.0.1/dist/bootstrap-float-label.min.css"/>
-  <link href='https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900|Montserrat:300,400,500,600,700,800,900'
-    rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="assets/vendor/pace/themes/black/pace-theme-flash.css"/>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/bootstrap-float-label/v3.0.1/dist/bootstrap-float-label.min.css"
+  />
+  <link href='https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900|Montserrat:300,400,500,600,700,800,900' rel='stylesheet'
+    type='text/css'>
+  <link rel="stylesheet" href="assets/vendor/pace/themes/black/pace-theme-flash.css" />
   <style type="text/css">
     .pace .pace-activity {
       top: 19px;
       right: 19px;
       display: none;
     }
+
     .page-loading {
       position: fixed;
       left: 0;
@@ -32,6 +35,7 @@
       transition: opacity 1s ease-in-out;
       z-index: -1;
     }
+
     .loading-icon {
       position: absolute;
       left: 50%;
@@ -41,16 +45,20 @@
       margin-left: -19px;
       margin-top: -19px;
     }
-    app-root:empty ~ .page-loading {
+
+    app-root:empty~.page-loading {
       opacity: 1;
       z-index: 1;
     }
   </style>
 </head>
+
 <body>
   <app-root></app-root>
   <div class="page-loading">
     <img src="assets/img/oval.svg" class="loading-icon" />
   </div>
+  <script src="https://www.2checkout.com/static/checkout/javascript/direct.min.js"></script>
 </body>
+
 </html>

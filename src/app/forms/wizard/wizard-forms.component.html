@@ -22,7 +22,7 @@
     <div class="card">
       <div class="card-body">
         <div class="card-block">
-          <aw-wizard [navBarLayout]="'small'">
+          <aw-wizard [defaultStepIndex]="stepIndex" [navBarLayout]="'small'" [navigationMode]="'free'">
             <aw-wizard-step stepTitle="Step 1">
               <form [formGroup]="step1Form" (ngSubmit)="step1()">
                 <div class="row">
@@ -32,7 +32,8 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <span class="has-float-label">
-                            <input class="form-control" id="first" type="text" name="firstName" placeholder="Name" formControlName="firstName" />
+                            <input class="form-control" id="first" type="text" value="" name="firstName" placeholder="Name" formControlName="firstName"
+                            />
                             <label for="first">First name</label>
                           </span>
                           <small *ngIf="step1Form.controls['firstName'].hasError('required') && step1Form.controls['firstName'].touched" class="font-small-1 text-danger">
@@ -43,7 +44,8 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <span class="has-float-label">
-                            <input class="form-control" id="last" type="text" name="lastName" placeholder="Surname" formControlName="lastName" />
+                            <input class="form-control" id="last" type="text" value="" name="lastName" placeholder="Surname" formControlName="lastName"
+                            />
                             <label for="first">Last name</label>
                           </span>
 
@@ -55,7 +57,7 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <span class="has-float-label">
-                            <input class="form-control" id="email" type="text" name="email" placeholder="Email" formControlName="email" />
+                            <input class="form-control" id="email" type="text" value="" name="email" placeholder="Email" formControlName="email" />
                             <label for="email">Email address</label>
                           </span>
                           <small *ngIf="step1Form.controls['email'].hasError('required') && step1Form.controls['email'].touched" class="font-small-1 text-danger">
@@ -314,13 +316,38 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <div class="position-relative has-icon-right dropdown ">
-                            <input class="form-control" name="cropName" formControlName="cropName" placeholder="Search" type="text" placeholder="Type crop name">
+                            <input class="form-control" autocomplete="off" (keypress)="changed()" name="cropName" formControlName="cropName" value=""
+                              type="text" placeholder="Type crop name">
                             <div class="form-control-position ">
                               <i class="ft-search"></i>
                             </div>
                             <div class="dropdown-content">
-                              <div class="row">
-                                <div *ngFor="let item of crops" class="col-md-4">
+                              <!-- <div class="row">
+                                <div *ngFor="let item of crops;">
+                                  <div *ngIf="crops.length == 1" class="col-md-12">
+                                    <span style="margin: 0 0 0 5px;">
+                                      <strong>{{item.alpha}}</strong>
+                                    </span>
+                                    <a (click)="changeText1(rec.Name,rec.Id)" style="margin: 0 0 0 5px;" *ngFor="let rec of item.records">{{rec.Name}}</a>
+                                  </div>
+                                  <div *ngIf="crops.length > 1" class="col-md-4">
+                                    <span style="margin: 0 0 0 5px;">
+                                      <strong>{{item.alpha}}</strong>
+                                    </span>
+                                    <a (click)="changeText1(rec.Name,rec.Id)" style="margin: 0 0 0 5px;" *ngFor="let rec of item.records">{{rec.Name}}</a>
+                                  </div>
+                                </div>
+                              </div> -->
+                              <div *ngIf="crops.length == 1" class="row">
+                                <div *ngFor="let item of crops;" class="col-md-12">
+                                  <span style="margin: 0 0 0 5px;">
+                                    <strong>{{item.alpha}}</strong>
+                                  </span>
+                                  <a (click)="changeText1(rec.Name,rec.Id)" style="margin: 0 0 0 5px;" *ngFor="let rec of item.records">{{rec.Name}}</a>
+                                </div>
+                              </div>
+                              <div *ngIf="crops.length > 1" class="row">
+                                <div *ngFor="let item of crops;" class="col-md-4">
                                   <span style="margin: 0 0 0 5px;">
                                     <strong>{{item.alpha}}</strong>
                                   </span>
@@ -371,7 +398,7 @@
                             </select>
                             <span>Plot size</span>
                             <small *ngIf="step2Form.controls['plotSize'].hasError('required') && step2Form.controls['plotSize'].touched" class="font-small-1 text-danger">
-                                Plot Size is required
+                              Plot Size is required
                             </small>
                           </label>
                         </div>
@@ -473,7 +500,7 @@
 
                         <div class="form-group">
                           <div class="position-relative has-icon-right">
-                            <input class="form-control" type="text" placeholder="Organic Matter" name="organicMatter" formControlName="organicMatter">
+                            <input class="form-control" type="number" min="0" placeholder="Organic Matter" name="organicMatter" formControlName="organicMatter">
                             <div class="form-control-position">
                               <i class="ft-percent"></i>
                             </div>
@@ -487,7 +514,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <span class="has-float-label">
-                            <input class="form-control" id="ph" type="text" placeholder="pH" name="ph" formControlName="ph" />
+                            <input class="form-control" id="ph" type="number" placeholder="pH" name="ph" formControlName="ph" />
                             <label for="ph">pH</label>
                           </span>
                           <small *ngIf="step3Form.controls['ph'].hasError('required') && step3Form.controls['ph'].touched" class="font-small-1 text-danger">
@@ -563,7 +590,7 @@
                     <div class="col-md-4">
                       <div class="form-group">
                         <span class="has-float-label">
-                          <input class="form-control" id="value" type="text" placeholder="value" name="value" formControlName="value" />
+                          <input class="form-control" id="value" type="number" min="0" placeholder="value" name="value" formControlName="value" />
                           <label for="value">Enter value</label>
                           <small *ngIf="step3Form.controls['nutrientData'].hasError('required') && step3Form.controls['nutrientData'].touched" class="font-small-1 text-danger">
                             Value is required
@@ -648,7 +675,7 @@
                       </h3>
                       <table style="width:100%;">
                         <tr *ngFor="let item of form3?.nutrientData;let i=index">
-                          <td >  {{item.nutrient}}</td>
+                          <td> {{item.nutrient}}</td>
                           <th>{{item.extMethod}}</th>
                           <th>{{item.value}}</th>
                           <th>{{item.nutrientUnit}}</th>
@@ -661,23 +688,67 @@
                 </div>
               </div>
               <button type="button" class="btn-custom btn" awPreviousStep>BACK</button>
-              <button type="button" class="btn-wiz btn" (click)="finishFunction()">GET REPORT</button>
+              <!-- <form ngNoForm action='https://sandbox.2checkout.com/checkout/purchase' method='post'>
+                <input type='hidden' name='sid' value='901385127' />
+                <input type='hidden' name='mode' value='2CO' />
+                <input type='hidden' name='li_0_type' value='product' />
+                <input type='hidden' name='li_0_name' value='Subscription' />
+                <input type='hidden' name='li_0_price' value='25.99' />
+                <input type='hidden' name='li_0_quantity' value='1' />
+                <input type='hidden' name='li_0_tangible' value='N' />
+                <input type='hidden' name='x_receipt_link_url' value='http://nikuyahoo039-001-site1.htempurl.com/' />
+                <input name='submit' class="btn-wiz btn" type='submit' value='GET REPORT' />
+              </form> -->
+              <form ngNoForm action='https://sandbox.2checkout.com/checkout/purchase' method='post'>
+                <input type='hidden' name='sid' value='901385127' />
+                <input type='hidden' name='mode' value='2CO' />
+                <input type='hidden' name='li_0_type' value='product' />
+                <input type='hidden' name='li_0_name' value='Subscription' />
+                <input type='hidden' name='li_0_price' value='49' />
+                <input type='hidden' name='li_0_quantity' value='1' />
+                <input type='hidden' name='li_0_tangible' value='N' />
+                <input type='hidden' name='card_holder_name' value='Checkout Shopper' />
+                <input type='hidden' name='street_address' value='123 Test Address' />
+                <input type='hidden' name='street_address2' value='Suite 200' />
+                <input type='hidden' name='city' value='Columbus' />
+                <input type='hidden' name='state' value='OH' />
+                <input type='hidden' name='zip' value='43228' />
+                <input type='hidden' name='country' value='USA' />
+                <input type='hidden' name='currency_code' value='USD' />
+                <input type='hidden' name='x_receipt_link_url' value='http://localhost:4200/forms/wizard' />
+                <input type='hidden' name='email' value='example@2co.com' />
+                <input type='hidden' name='phone' value='614-921-2450' />
+                <input name='submit' type='submit' class="btn-wiz btn" *ngIf="!isPay" value='GET REPORT' />
+              </form>
+              <!-- <button type="button" class="btn-wiz btn" awNextStep>GET REPORT</button> -->
             </aw-wizard-step>
-            <!-- <aw-wizard-step stepTitle="Step 5">
+            <aw-wizard-step stepTitle="Step 5" *ngIf="isPay">
               <div class="row">
                 <div class="col-md-12">
                   <h3 class="fgreen">Thanks for using SMART</h3>
-
                 </div>
                 <div class="col-md-12">
                   <p>You will receive your fertilizer recommendation shortly delivered to your inbox.</p>
                   <br>
+                  <div *ngFor="let item of reportData">
+                    <table class="table table-bordered">
+                      <tr *ngFor="let st of item.stages">
+                        <td>
+                          {{st.Id }}
+                        </td>
+                         <td>
+                          {{st.Name }}
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <br>
                   <button class="btn btn-custom">ACTION?</button>
                 </div>
               </div>
-              <button type="button" class="btn-custom btn" awPreviousStep>Back</button>
-              <button type="button" class="btn-wiz btn" >Finish</button>
-            </aw-wizard-step> -->
+
+            </aw-wizard-step>
           </aw-wizard>
         </div>
       </div>

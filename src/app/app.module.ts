@@ -55,6 +55,7 @@ export function createTranslateLoader(http: HttpClient) {
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyBr5_picK8YJK7fFR2CPzTVMj6GG1TtRGo'
         })
+        
     ],
     providers: [
         //Toastr and auth providers

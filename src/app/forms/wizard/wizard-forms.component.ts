@@ -3,6 +3,8 @@ import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 import { FormArray, FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SoilService } from './soil.service';
 import { SelectItemGroup } from 'primeng/api';
+import { CreditCardValidator } from 'ngx-credit-cards';
+import { ActivatedRoute, Router } from '@angular/router';
 declare var require: any;
 const data: any = require('./crops.json');
 
@@ -27,6 +29,7 @@ export class WizardFormsComponent implements OnInit {
     type: any[] = ['N', 'P', 'K', 'Ca', 'Mg', 'S', 'B', 'Fe', 'Mn', 'Zn', 'Cu', 'Mo', 'Na', 'Al', 'Cl', 'HCO3'];
     alpha: any[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
     crops: any[] = [];
+    cropId: any;
     crop: {
         alpha: string,
         records: any[]
@@ -38,12 +41,29 @@ export class WizardFormsComponent implements OnInit {
     step1Form: FormGroup;
     step2Form: FormGroup;
     step3Form: FormGroup;
+    step5Form: FormGroup;
     form1: any;
     form2: any;
     form3: any;
+    paymentModel: any = {};
+    form: FormGroup;
+    convertData: any[] = [];
+    reportData: any[] = [];
+    allcrops: any[] = [];
+    payUrl: any;
+    isPay: boolean = false;
+    stepIndex: number = 0;
     private _emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    constructor(private service: SoilService, private fb: FormBuilder) {
+    constructor(private service: SoilService, private fb: FormBuilder, private route: ActivatedRoute,
+        private router: Router) {
+
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        this.payUrl = url.searchParams.get("credit_card_processed");
+        if (this.payUrl == 'Y') {
+            this.isPay = true;
+        }
         this.service.getNutrients()
             .subscribe(data => {
                 this.nutrientsData = data;
@@ -93,6 +113,14 @@ export class WizardFormsComponent implements OnInit {
 
             this.crops.push(this.crop);
         }
+
+        this.form = this.fb.group({
+            cardNumber: ['', CreditCardValidator.validateCardNumber],
+            cardExpDate: ['', CreditCardValidator.validateCardExpiry],
+            cardCvv: ['', CreditCardValidator.validateCardCvc],
+            cardName: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+        });
+        this.allcrops = this.crops;
     }
 
     ngOnInit() {
@@ -161,6 +189,45 @@ export class WizardFormsComponent implements OnInit {
             .subscribe(data => {
                 this.unitesData = data;
             })
+
+        this.step5Form = new FormGroup({
+            cardNo: new FormControl('', [
+                Validators.required
+            ]),
+            expMonth: new FormControl('', [
+                Validators.required
+            ]),
+            expYear: new FormControl('', [
+                Validators.required
+            ]),
+            cvc: new FormControl('', [
+                Validators.required
+            ]),
+        });
+        console.log(this.payUrl)
+        if (this.payUrl == 'Y') {
+            this.form1 = JSON.parse(localStorage.getItem("form1"));
+            this.form2 = JSON.parse(localStorage.getItem("form1"));
+            this.form3 = JSON.parse(localStorage.getItem("form1"));
+            this.cropId = JSON.parse(localStorage.getItem("cropid"));
+            this.convertData = JSON.parse(localStorage.getItem("convert"));
+            if (this.form1) {
+                // console.log(this.form1)
+                // this.step1Form.controls['firstName'].setValue(this.form1.firstName);
+                // this.step1Form.controls['lastName'].setValue(this.form1.lastName);
+                // this.step1Form.controls['email'].setValue(this.form1.email);
+                // this.step1Form.controls['country'].setValue(this.form1.country);
+
+                this.isPay = true;
+                this.getReport();
+                this.stepIndex = 4;
+            } else {
+                window.location.href = '';
+            }
+
+        } else {
+            this.router.navigate['/'];
+        }
     }
 
     nutrientModel() {
@@ -180,7 +247,7 @@ export class WizardFormsComponent implements OnInit {
         this.soilType = [];
         this.step2Form.controls['variety'].disable();
         this.step2Form.controls['specifics'].disable();
-
+        this.cropId = id;
         this.service.postLogin()
             .subscribe(data => {
                 this.service.getVarieties(data.UserId, data.Token, id)
@@ -193,6 +260,7 @@ export class WizardFormsComponent implements OnInit {
                         }
                     });
             });
+        localStorage.setItem("cropid", JSON.stringify(this.cropId));
     }
 
     changeText2(event) {
@@ -210,16 +278,21 @@ export class WizardFormsComponent implements OnInit {
 
     step1() {
         this.form1 = this.step1Form.value;
-        console.log(this.step1Form)
+        localStorage.setItem("form1", JSON.stringify(this.form1));
+        console.log(this.form1)
     }
     step2() {
         this.form2 = this.step2Form.value;
-        console.log(this.step2Form)
+        localStorage.setItem("form2", JSON.stringify(this.form2));
+        console.log(this.form2)
     }
     step3() {
         this.form3 = this.step3Form.value;
+        this.convertData = [];
+        console.log(this.form3)
         for (let i = 0; i < this.form3.nutrientData.length; i++) {
             let fill = this.alldata[i];
+            //localStorage.removeItem("covert");
             for (let j = 0; j < fill.nutrients.length; j++) {
                 if (fill.nutrients[j].value.id == this.form3.nutrientData[i].nutrient) {
                     this.form3.nutrientData[i].nutrient = fill.nutrients[j].value.name;
@@ -230,7 +303,38 @@ export class WizardFormsComponent implements OnInit {
                     this.form3.nutrientData[i].extMethod = fill.extMethod[j].value.name;
                 }
             }
+            this.service.postConvertionValue(this.form3.nutrientData[i], this.type[i])
+                .subscribe(data => {
+                    this.convertData.push(data);
+                    localStorage.setItem("convert", JSON.stringify(this.convertData));
+                });
+            console.log(this.convertData)
+
         }
+        localStorage.setItem("form3", JSON.stringify(this.form3));
     }
 
+    getReport() {
+
+        this.service.postLogin()
+            .subscribe(data => {
+                this.service.postReport(this.form1, this.form2, this.form3, this.convertData, this.cropId, data.UserId, data.Token)
+                    .subscribe(data1 => {
+                        this.reportData = data1;
+                    });
+            });
+
+    }
+
+    changed() {
+
+        (this.step2Form.controls["cropName"] as FormControl).valueChanges.subscribe(value => {
+            if (value) {
+                this.crops = this.crops.filter(a => a.alpha == value.toString().toUpperCase().charAt(0));
+            } else {
+                this.crops = this.allcrops;
+            }
+        });
+
+    }
 }

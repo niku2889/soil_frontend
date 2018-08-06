@@ -32,6 +32,7 @@ import { DropdownsComponent } from "../components/bootstrap/dropdowns/dropdowns.
 
 import { ArchwizardModule } from 'angular-archwizard';
 import { DropdownModule } from 'primeng/dropdown';
+import { NgXCreditCardsModule } from 'ngx-credit-cards';
 
 @NgModule({
     imports: [
@@ -47,7 +48,8 @@ import { DropdownModule } from 'primeng/dropdown';
 
         ArchwizardModule,
         DropdownModule,
-        
+        NgXCreditCardsModule,
+
         CommonModule,
         FormsRoutingModule,
         ReactiveFormsModule,

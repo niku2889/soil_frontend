@@ -53,6 +53,7 @@
     "ng2-toastr": "^4.1.2",
     "ng2-validation": "^4.2.0",
     "ngx-chips": "^1.9.2",
+    "ngx-credit-cards": "^1.0.9",
     "ngx-quill": "^2.2.0",
     "ngx-ui-switch": "^1.6.0",
     "node-sass": "^4.9.2",

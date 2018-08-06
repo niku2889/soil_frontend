@@ -11,4 +11,6 @@ export class Urls {
   static validateToken = Urls.base + 'validatetoken/';
   static crops = Urls.base + 'crops/';
   static varieties = Urls.base + 'varieties/';
+  static convertion = Urls.base + 'convertion/';
+  static recommandation = Urls.base + 'recommandation/';
 }
