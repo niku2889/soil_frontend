@@ -1,4 +1,5 @@
 <!-- Wizard Starts -->
+<p-growl [(value)]="msgs"></p-growl>
 
 <div class="row">
   <div class="col-sm-12" style="padding:0 10%;">
@@ -307,13 +308,13 @@
                 <button type="submit" class="btn-wiz btn" [disabled]="step1Form.invalid" awNextStep>NEXT</button>
               </form>
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 2" awOptionalStep>
+            <aw-wizard-step stepTitle="Step 2">
               <form [formGroup]="step2Form" (ngSubmit)="step2()">
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <h3 class="fgreen">Tell us about your crops</h3>
                     <div class="row">
-                      <div class="col-md-12">
+                      <div class="col-md-6">
                         <div class="form-group">
                           <div class="position-relative has-icon-right dropdown ">
                             <input class="form-control" autocomplete="off" (keypress)="changed()" name="cropName" formControlName="cropName" value=""
@@ -361,10 +362,12 @@
                           </small>
                         </div>
                       </div>
-                      <div class="col-md-12">
+                      <div class="col-md-6"></div>
+                      <div class="col-md-6">
                         <div class="form-group">
                           <label class="form-group has-float-label">
                             <select class="form-control custom-select" name="variety" formControlName="variety" (change)="changeText2($event.target.value)">
+                              <option value="">-- Select Variety --</option>
                               <option *ngFor="let item of varietyData" value="{{item.Id}}">{{item.Name}}</option>
                             </select>
                             <span>Choose crop variety</span>
@@ -375,10 +378,12 @@
 
                         </div>
                       </div>
-                      <div class="col-md-12">
+                      <div class="col-md-6"></div>
+                      <div class="col-md-6">
                         <div class="form-group">
                           <label class="form-group has-float-label">
                             <select class="form-control custom-select" name="specifics" formControlName="specifics">
+                              <option value="">-- Select Specifics --</option>
                               <option *ngFor="let item of soilType" value="{{item.Name}}">{{item.Name}}</option>
                             </select>
                             <span>Specifics</span>
@@ -389,13 +394,11 @@
 
                         </div>
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-6"></div>
+                      <div class="col-md-4">
                         <div class="form-group">
                           <label class="form-group has-float-label">
-                            <select class="form-control custom-select" name="plotSize" formControlName="plotSize">
-                              <option value="Hectare">Hectare</option>
-                              <option value="Acre">Acre</option>
-                            </select>
+                            <input class="form-control" type="number" min="0" placeholder="Plot Size" name="plotSize" formControlName="plotSize">
                             <span>Plot size</span>
                             <small *ngIf="step2Form.controls['plotSize'].hasError('required') && step2Form.controls['plotSize'].touched" class="font-small-1 text-danger">
                               Plot Size is required
@@ -403,11 +406,12 @@
                           </label>
                         </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-2">
                         <div class="form-group">
                           <label class="form-group has-float-label">
                             <select class="form-control custom-select" name="plotSizeUnit" formControlName="plotSizeUnit">
-                              <option *ngFor="let item of unitesData" [value]="item.name">{{item.name}}</option>
+                              <option value="Hectare">Hectare</option>
+                              <option value="Acre">Acre</option>
                             </select>
                             <span>Unit</span>
                             <small *ngIf="step2Form.controls['plotSizeUnit'].hasError('required') && step2Form.controls['plotSizeUnit'].touched" class="font-small-1 text-danger">
@@ -417,13 +421,11 @@
 
                         </div>
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-6"></div>
+                      <div class="col-md-4">
                         <div class="form-group">
                           <label class="form-group has-float-label">
-                            <select class="form-control custom-select" name="averageYield" formControlName="averageYield">
-                              <option value="mt/Hectare">mt/Hectare</option>
-                              <option value="ton/Acre">ton/Acre</option>
-                            </select>
+                            <input class="form-control" type="number" min="0" placeholder="Average yield" name="averageYield" formControlName="averageYield">
                             <span>Average yield</span>
                             <small *ngIf="step2Form.controls['averageYield'].hasError('required') && step2Form.controls['averageYield'].touched" class="font-small-1 text-danger">
                               Average Yield is required
@@ -431,11 +433,12 @@
                           </label>
                         </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-2">
                         <div class="form-group">
                           <label class="form-group has-float-label">
                             <select class="form-control custom-select" name="averageYieldUnit" formControlName="averageYieldUnit">
-                              <option *ngFor="let item of unitesData" [value]="item.name">{{item.name}}</option>
+                              <option value="mt/Hectare">mt/Hectare</option>
+                              <option value="ton/Acre">ton/Acre</option>
                             </select>
                             <span>Unit</span>
                             <small *ngIf="step2Form.controls['averageYieldUnit'].hasError('required') && step2Form.controls['averageYieldUnit'].touched"
@@ -446,23 +449,24 @@
 
                         </div>
                       </div>
+                      <div class="fgreen col-md-6">
+                        <table>
+                          <tr>
+                            <td style="width: 40px;">
+                              <i class="fa icon-info fa-2x">
+                              </i>
+                            </td>
+                            <td>
+                              If this is your first year growing this crop and you have no average yield,
+                              <br> please lookup average yields in your area.
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
                     </div>
                   </div>
-                  <div style="padding-top: 245px;" class="fgreen col-md-6">
-                    <table>
-                      <tr>
-                        <td style="width: 40px;">
-                          <i class="fa icon-info fa-2x">
-                          </i>
-                        </td>
-                        <td>
-                          If this is your first year growing this crop and you have no average yield,
-                          <br> please lookup average yields in your area.
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
                 </div>
+                <br>
                 <button type="button" class="btn-custom btn" awPreviousStep>BACK</button>
                 <button type="submit" class="btn-wiz btn" [disabled]="step2Form.invalid" awNextStep>NEXT</button>
               </form>
@@ -514,7 +518,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <span class="has-float-label">
-                            <input class="form-control" id="ph" type="number" placeholder="pH" name="ph" formControlName="ph" />
+                            <input class="form-control" id="ph" min="0" max="14" type="number" placeholder="pH" name="ph" formControlName="ph" />
                             <label for="ph">pH</label>
                           </span>
                           <small *ngIf="step3Form.controls['ph'].hasError('required') && step3Form.controls['ph'].touched" class="font-small-1 text-danger">
@@ -715,34 +719,141 @@
                 <input type='hidden' name='zip' value='43228' />
                 <input type='hidden' name='country' value='USA' />
                 <input type='hidden' name='currency_code' value='USD' />
-                <input type='hidden' name='x_receipt_link_url' value='http://localhost:4200/forms/wizard' />
+                <!-- <input type='hidden' name='x_receipt_link_url' value='http://localhost:4200/forms/wizard' /> -->
                 <input type='hidden' name='email' value='example@2co.com' />
                 <input type='hidden' name='phone' value='614-921-2450' />
                 <input name='submit' type='submit' class="btn-wiz btn" *ngIf="!isPay" value='GET REPORT' />
               </form>
               <!-- <button type="button" class="btn-wiz btn" awNextStep>GET REPORT</button> -->
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 5" *ngIf="isPay">
-              <div class="row">
-                <div class="col-md-12">
-                  <h3 class="fgreen">Thanks for using SMART</h3>
+            <aw-wizard-step stepTitle="Step 5" awSelectedStep *ngIf="isPay">
+              <br>
+              <div class="row" *ngIf="!reportData" style="margin:auto 0;">
+                <h3 class="fgreen">Please wait while your report is generating</h3>
+              </div>
+              <div class="row" *ngIf="reportData">
+                <div class="col-md-12" *ngIf="reportData.ScheduleResponse">
+                  <span style="font-size: 24px;" class="fgreen">Fertilizer Schedule</span>
+                  <span style="float:right;">{{fdate | date:'short'}}</span>
                 </div>
-                <div class="col-md-12">
-                  <p>You will receive your fertilizer recommendation shortly delivered to your inbox.</p>
-                  <br>
-                  <div *ngFor="let item of reportData">
-                    <table class="table table-bordered">
-                      <tr *ngFor="let st of item.stages">
-                        <td>
-                          {{st.Id }}
-                        </td>
-                         <td>
-                          {{st.Name }}
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
+                <div class="col-md-12" *ngIf="reportData.ScheduleResponse">
+                  <table style="border-bottom: 1px solid;border-top: 1px solid;" class="table table-borderless">
+                    <tr>
+                      <td>Crop</td>
+                      <th>{{form2?.cropName}}</th>
+                      <td>Variety</td>
+                      <th>{{form2?.variety}}</th>
+                    </tr>
+                    <tr>
+                      <td>Growing method</td>
+                      <th>{{form2?.specifics}}</th>
+                      <td>Yield goal</td>
+                      <th>{{form2?.averageYield}}</th>
+                    </tr>
+                  </table>
+                  <!-- <p>You will receive your fertilizer recommendation shortly delivered to your inbox.</p> -->
+                  <p-accordion [multiple]="true">
+                    <p-accordionTab header="Nutrient Summary" [selected]="true">
+                      <table class="table">
+                        <tr>
+                          <td>Nutrient</td>
+                          <td>Actual Requirement</td>
+                          <td>Current Application</td>
+                          <td>Fulfilled Requirement</td>
+                        </tr>
+                        <tr>
+                          <th>N</th>
+                          <th>{{actual_N | number}}</th>
+                          <th>{{current_N | number}}</th>
+                          <th>{{fullfilled_N | number}}</th>
+                        </tr>
+                        <tr>
+                          <th>P</th>
+                          <th>{{actual_P | number}}</th>
+                          <th>{{current_P | number}}</th>
+                          <th>{{fullfilled_P | number}}</th>
+                        </tr>
+                        <tr>
+                          <th>K</th>
+                          <th>{{actual_K | number}}</th>
+                          <th>{{current_K | number}}</th>
+                          <th>{{fullfilled_K | number}}</th>
+                        </tr>
+                      </table>
+                    </p-accordionTab>
+                    <p-accordionTab header="{{item.Name}}" *ngFor="let item of reportData?.ScheduleResponse.stages">
+                      <p style="    float: right;">Duration :
+                        <strong>{{item?.Duration}}</strong>
+                      </p>
+                      <table class="table">
+                        <tr>
+                          <td>Fertilizer Name</td>
+                          <td>Application Amount</td>
+                          <td>Unit</td>
+                        </tr>
+                        <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
+                          <th>{{fer?.Name}}</th>
+                          <th>{{fer?.Concentration}}</th>
+                          <th *ngIf="fer?.ConcentrationUnit == 6">Kg</th>
+                          <th *ngIf="fer?.ConcentrationUnit == 9">lbs</th>
+                        </tr>
+                      </table>
+                    </p-accordionTab>
+                    <p-accordionTab header="Season Summary - NPK distribution">
+                      <table class="table table-bordered">
+                        <tr>
+                          <td></td>
+                          <td colspan="2" class="text-center">N</td>
+                          <td colspan="2" class="text-center">P</td>
+                          <td colspan="2" class="text-center">K</td>
+                        </tr>
+                        <tr>
+                          <td>Stage name</td>
+                          <td>kg/ha/stage*</td>
+                          <td>kg/ha/day**</td>
+                          <td>kg/ha/stage*</td>
+                          <td>kg/ha/day**</td>
+                          <td>kg/ha/stage*</td>
+                          <td>kg/ha/day**</td>
+                        </tr>
+                        <tr *ngFor="let item of reportData?.ScheduleResponse.stages">
+                          <th>{{item?.Name}}</th>
+                          <th>{{item?.FertAddition?.N_Val ? item?.FertAddition?.N_Val : 0 | number}}</th>
+                          <th>{{item?.FertAddition?.N_Val / item?.Duration | number}}</th>
+                          <th>{{item?.FertAddition?.P_Val ? item?.FertAddition?.P_Val : 0 | number}}</th>
+                          <th>{{item?.FertAddition?.P_Val / item?.Duration | number}}</th>
+                          <th>{{item?.FertAddition?.K_Val ? item?.FertAddition?.K_Val : 0 | number}}</th>
+                          <th>{{item?.FertAddition?.K_Val / item?.Duration | number}}</th>
+                        </tr>
+                        <tr>
+                          <td>Total</td>
+                          <th>{{getSum('N') | number}}</th>
+                          <th>{{getSum('n') | number}}</th>
+                          <th>{{getSum('P') | number}}</th>
+                          <th>{{getSum('p') | number}}</th>
+                          <th>{{getSum('K') | number}}</th>
+                          <th>{{getSum('k') | number}}</th>
+                        </tr>
+                      </table>
 
+                    </p-accordionTab>
+                    <p-accordionTab header="Season Summary - Fertilizers">
+                      <table class="table table-bordered">
+                        <tr>
+                          <td>Fertilizer</td>
+                          <td colspan="2" class="text-center">Quantity</td>
+                        </tr>
+                        <tbody *ngFor="let item of reportData?.ScheduleResponse.stages">
+                          <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
+                            <th>{{fer?.Name}}</th>
+                            <th>{{fer?.Concentration}}</th>
+                            <th *ngIf="fer?.ConcentrationUnit == 6">Kg</th>
+                            <th *ngIf="fer?.ConcentrationUnit == 9">lbs</th>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </p-accordionTab>
+                  </p-accordion>
                   <br>
                   <button class="btn btn-custom">ACTION?</button>
                 </div>
@@ -756,3 +867,4 @@
   </div>
 </div>
 <!-- Wizard Ends -->
+<!-- <script src="https://www.2checkout.com/static/checkout/javascript/direct.min.js"></script> -->

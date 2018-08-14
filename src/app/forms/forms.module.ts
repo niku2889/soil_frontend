@@ -29,10 +29,12 @@ import { InputsComponent } from './elements/inputs/inputs.component';
 import { InputGroupsComponent } from './elements/input-groups/input-groups.component';
 import { InputGridComponent } from './elements/input-grid/input-grid.component';
 import { DropdownsComponent } from "../components/bootstrap/dropdowns/dropdowns.component";
-
+import { AccordionModule } from 'primeng/accordion';
 import { ArchwizardModule } from 'angular-archwizard';
 import { DropdownModule } from 'primeng/dropdown';
 import { NgXCreditCardsModule } from 'ngx-credit-cards';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { GrowlModule } from 'primeng/growl';
 
 @NgModule({
     imports: [
@@ -47,8 +49,11 @@ import { NgXCreditCardsModule } from 'ngx-credit-cards';
         UiSwitchModule,
 
         ArchwizardModule,
+        AccordionModule,
         DropdownModule,
         NgXCreditCardsModule,
+        ProgressBarModule,
+        GrowlModule,
 
         CommonModule,
         FormsRoutingModule,

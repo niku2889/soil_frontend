@@ -120,6 +120,45 @@ export class SoilService {
     });
   }
 
+  signupSF(form1) {
+    const body = JSON.stringify({
+      "firstname": form1.firstName,
+      "lastname": form1.lastName,
+      "email": form1.email,
+      "country": form1.country
+    })
+    let headers = new HttpHeaders();
+    headers = headers.set('content-Type', 'application/json;charset=utf-8');
+    return Observable.create((observer) => {
+      return this._http.post(Urls.signup, body, { headers: headers })
+        .subscribe(data => {
+          observer.next(data);
+        },
+          err => {
+            console.error(err);
+          });
+    });
+  }
+
+  updateSF(sf, cronpname) {
+    const body = JSON.stringify({
+      "accountId": sf.accountId,
+      "contactId": sf.contactId,
+      "cropName": cronpname
+    })
+    let headers = new HttpHeaders();
+    headers = headers.set('content-Type', 'application/json;charset=utf-8');
+    return Observable.create((observer) => {
+      return this._http.post(Urls.updatecustomer, body, { headers: headers })
+        .subscribe(data => {
+          observer.next(data);
+        },
+          err => {
+            console.error(err);
+          });
+    });
+  }
+
   postConvertionValue(form3, nutrient) {
     const body = JSON.stringify({
       "nutrient": nutrient.toString().toLowerCase(),

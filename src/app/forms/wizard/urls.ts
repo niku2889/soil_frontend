@@ -13,4 +13,6 @@ export class Urls {
   static varieties = Urls.base + 'varieties/';
   static convertion = Urls.base + 'convertion/';
   static recommandation = Urls.base + 'recommandation/';
+  static signup = Urls.base + 'signup/';
+  static updatecustomer = Urls.base + 'updatecustomer/';
 }
