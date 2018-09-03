@@ -287,7 +287,7 @@
 .has-float-label .form-control:placeholder-shown:not(:focus)+* {
   font-size: 100%!important;
   opacity: .5;
-  top: .6em!important;
+  top: .9em!important;
   font-weight: 400;
   border: none;
     right: inherit;
@@ -299,9 +299,11 @@
   position: absolute;
   font-size: 80%;
   right: 10px;
-  border: 1px solid #dcf7a5;
+  border: 1px solid  #9eca45;
+  color : #9eca45;
   padding: 0 8px;
   border-radius: 50px;
+  font-weight: 400;
   background: white;
   left: inherit; 
     z-index: inherit!important;
@@ -414,5 +416,8 @@
 }
 
 .form .form-control{
-  border: 1px solid #dcf7a5!important;
+  border: 1px solid #c5c5c5!important;
+  color: darkgreen!important;
+  line-height: 2!important;
+
 }

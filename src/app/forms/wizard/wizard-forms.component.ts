@@ -9,11 +9,13 @@ import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
 declare var require: any;
 const data: any = require('./crops.json');
+import * as jspdf from 'jspdf';
+import * as html2canvas from 'html2canvas';
 
 @Component({
     selector: 'app-wizard-forms',
     templateUrl: './wizard-forms.component.html',
-    styleUrls: ['./wizard-forms.component.scss'],
+    styleUrls: ['./wizard-forms.component.css'],
     providers: [SoilService, MessageService]
 })
 
@@ -309,17 +311,14 @@ export class WizardFormsComponent implements OnInit {
             .subscribe(data => {
                 localStorage.setItem("salesforce", JSON.stringify(data));
             });
-        console.log(this.form1)
     }
     step2() {
         this.form2 = this.step2Form.value;
         localStorage.setItem("form2", JSON.stringify(this.form2));
-        console.log(this.form2)
     }
     step3() {
         this.form3 = this.step3Form.value;
         this.convertData = [];
-        console.log(this.form3)
         for (let i = 0; i < this.form3.nutrientData.length; i++) {
             let fill = this.alldata[i];
             //localStorage.removeItem("covert");
@@ -338,7 +337,6 @@ export class WizardFormsComponent implements OnInit {
                     this.convertData.push(data);
                     localStorage.setItem("convert", JSON.stringify(this.convertData));
                 });
-            console.log(this.convertData)
 
         }
         localStorage.setItem("form3", JSON.stringify(this.form3));
@@ -383,6 +381,34 @@ export class WizardFormsComponent implements OnInit {
             } else {
                 this.crops = this.allcrops;
             }
+        });
+
+    }
+
+    captureScreen() {
+        var data = document.getElementById('contentToConvert');
+
+        html2canvas(data).then(canvas => {
+            // Few necessary setting options  
+            var imgWidth = 208;
+            var pageHeight = 295;
+            var imgHeight = canvas.height * imgWidth / canvas.width;
+            var heightLeft = imgHeight;
+
+            const contentDataURL = canvas.toDataURL('image/png')
+            let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
+            let d = new Date();
+            var position = 0;
+            pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+
+            while (heightLeft >= 0) {
+                position = heightLeft - imgHeight;
+                pdf.addPage();
+                pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
+            pdf.save('FertilizerSchedule_' + d + '.pdf'); // Generated PDF   
         });
 
     }
