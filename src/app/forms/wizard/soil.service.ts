@@ -154,7 +154,7 @@ export class SoilService {
           observer.next(data);
         },
           err => {
-            console.error(err);
+            //console.error(err);
           });
     });
   }
@@ -203,15 +203,15 @@ export class SoilService {
         "Zip": "null",
         "Country": form1.country
       },
-      "Fertilizers": {
-        "Fertilizer": [
-          {
-            "Id": 8173,
-            "FertilizerId": 8173,
-            "AcidConcentration": "0"
-          }
-        ]
-      },
+      // "Fertilizers": {
+      //   "Fertilizer": [
+      //     {
+      //       "Id": 8173,
+      //       "FertilizerId": 8173,
+      //       "AcidConcentration": "0"
+      //     }
+      //   ]
+      // },
       "Plot": {
         "FarmName": form1.firstName + '_' + form1.lastName,
         "LocationGEO": {
@@ -230,7 +230,7 @@ export class SoilService {
           ],
           "type": "FeatureCollection"
         },
-        "PlotArea": 12,
+        "PlotArea": Number(form2.plotSize),
         "PlotName": "plot1",
         "PlotTypeId": 1
       },
@@ -280,36 +280,244 @@ export class SoilService {
         "Al_Val": parseFloat(convertData[13]['changeNutrientForm']),
         "Cl_Val": parseFloat(convertData[14]['changeNutrientForm'])
       },
-      "BaseDressing": {
-        "CEC": "13",
-        "SoilTypeId": 1,
-        "N_percentage_val": 50,
-        "P_percentage_val": 40,
-        "K_percentage_val": 5,
-        "Ca_percentage_val": null,
-        "Mg_percentage_val": null,
-        "S_percentage_val": null,
-        "B_percentage_val": null,
-        "Fe_percentage_val": null,
-        "Mn_percentage_val": null,
-        "Zn_percentage_val": null,
-        "Cu_percentage_val": null,
-        "Mo_percentage_val": null,
-        "Na_percentage_val": "",
-        "HCO3_percentage_val": "",
-        "CO3_percentage_val": "",
-        "SelectedFertilizers": {
-          "Fertilizer": [
-            {
-              "Id": 13,
-              "FertilizerId": 13
-            },
-            {
-              "Id": 11,
-              "FertilizerId": 11
-            }
-          ]
-        }
+      // "BaseDressing": {
+      //   "CEC": "13",
+      //   "SoilTypeId": 1,
+      //   "N_percentage_val": 50,
+      //   "P_percentage_val": 40,
+      //   "K_percentage_val": 5,
+      //   "Ca_percentage_val": null,
+      //   "Mg_percentage_val": null,
+      //   "S_percentage_val": null,
+      //   "B_percentage_val": null,
+      //   "Fe_percentage_val": null,
+      //   "Mn_percentage_val": null,
+      //   "Zn_percentage_val": null,
+      //   "Cu_percentage_val": null,
+      //   "Mo_percentage_val": null,
+      //   "Na_percentage_val": "",
+      //   "HCO3_percentage_val": "",
+      //   "CO3_percentage_val": "",
+      //   "SelectedFertilizers": {
+      //     "Fertilizer": [
+      //       {
+      //         "Id": 13,
+      //         "FertilizerId": 13
+      //       },
+      //       {
+      //         "Id": 11,
+      //         "FertilizerId": 11
+      //       }
+      //     ]
+      //   }
+      // }
+      "Fertilizers": {
+        "Fertilizer": [
+          {
+            "Id": 9,
+            "FertilizerId": 9,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 15,
+            "FertilizerId": 15,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 163,
+            "FertilizerId": 163,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 26,
+            "FertilizerId": 26,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 5400,
+            "FertilizerId": 5400,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 23,
+            "FertilizerId": 23,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 17,
+            "FertilizerId": 17,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 164,
+            "FertilizerId": 164,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 838,
+            "FertilizerId": 838,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 4,
+            "FertilizerId": 4,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 2,
+            "FertilizerId": 2,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 3,
+            "FertilizerId": 3,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 24,
+            "FertilizerId": 24,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 4469,
+            "FertilizerId": 4469,
+            "ConcentrationUnit": 4,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 4504,
+            "FertilizerId": 4504,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 14,
+            "FertilizerId": 14,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 4657,
+            "FertilizerId": 4657,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 4552,
+            "FertilizerId": 4552,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 4413,
+            "FertilizerId": 4413,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 4551,
+            "FertilizerId": 4551,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 12,
+            "FertilizerId": 12,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 13,
+            "FertilizerId": 13,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 4459,
+            "FertilizerId": 4459,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 159,
+            "FertilizerId": 159,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 11,
+            "FertilizerId": 11,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 10,
+            "FertilizerId": 10,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 6235,
+            "FertilizerId": 6235,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 165,
+            "FertilizerId": 165,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 8235,
+            "FertilizerId": 8235,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 6234,
+            "FertilizerId": 6234,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 25,
+            "FertilizerId": 25,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 4490,
+            "FertilizerId": 4490,
+            "ConcentrationUnit": 4,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 18,
+            "FertilizerId": 18,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          },
+          {
+            "Id": 1,
+            "FertilizerId": 1,
+            "ConcentrationUnit": 1,
+            "AcidConcentration": "0"
+          }
+        ]
       }
     })
     console.log(body)

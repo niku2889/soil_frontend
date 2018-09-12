@@ -12,7 +12,7 @@
       </a>
     </div>
     <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;">GET YOUR FERTILIZER PLAN</h1>
-    <h1 class="content-header" class="htitle">in under 15 minutes, for only $49</h1>
+    <h1 class="content-header" class="htitle">in under 15 minutes, for only $79</h1>
     <p class="hstitle">Thanks for choosing SMART for turning your
       <strong>soil tests into a professional and actionable fertilizer plan.</strong>
       <br> With more than 250 crops available, this is yout gateway to precise and more successful farming!</p>
@@ -25,7 +25,7 @@
       <div class="card-body">
         <div class="card-block">
           <aw-wizard [defaultStepIndex]="stepIndex" [navBarLayout]="'small'" [navigationMode]="'free'">
-            <aw-wizard-step stepTitle="Step 1">
+            <aw-wizard-step stepTitle="Step 1" (stepEnter)="scrolltoTop()">
               <form [formGroup]="step1Form" (ngSubmit)="step1()">
                 <div class="row">
                   <div class="col-md-6">
@@ -34,9 +34,9 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <span class="has-float-label">
+                            <label for="first">First name</label>
                             <input class="form-control" id="first" type="text" value="" name="firstName" placeholder="Name" formControlName="firstName"
                             />
-                            <label for="first">First name</label>
                           </span>
                           <small *ngIf="step1Form.controls['firstName'].hasError('required') && step1Form.controls['firstName'].touched" class="font-small-1 text-danger">
                             First Name is required
@@ -46,9 +46,10 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <span class="has-float-label">
+                            <label for="first">Last name</label>
                             <input class="form-control" id="last" type="text" value="" name="lastName" placeholder="Surname" formControlName="lastName"
                             />
-                            <label for="first">Last name</label>
+
                           </span>
 
                           <small *ngIf="step1Form.controls['lastName'].hasError('required') && step1Form.controls['lastName'].touched" class="font-small-1 text-danger">
@@ -59,8 +60,9 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <span class="has-float-label">
-                            <input class="form-control" id="email" type="text" value="" name="email" placeholder="Email" formControlName="email" />
                             <label for="email">Email address</label>
+                            <input class="form-control" id="email" type="text" value="" name="email" placeholder="Email" formControlName="email" />
+
                           </span>
                           <small *ngIf="step1Form.controls['email'].hasError('required') && step1Form.controls['email'].touched" class="font-small-1 text-danger">
                             Email is required
@@ -316,7 +318,7 @@
 
               </form>
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 2">
+            <aw-wizard-step stepTitle="Step 2" (stepEnter)="scrolltoTop()">
               <form [formGroup]="step2Form" (ngSubmit)="step2()">
                 <div class="row">
                   <div class="col-md-12">
@@ -406,8 +408,9 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <span class="form-group has-float-label">
-                            <input class="form-control" type="number" min="0" placeholder="Plot Size" name="plotSize" formControlName="plotSize">
                             <span>Plot size</span>
+                            <input class="form-control" type="number" min="0" placeholder="Plot Size" name="plotSize" formControlName="plotSize">
+
                             <small *ngIf="step2Form.controls['plotSize'].hasError('required') && step2Form.controls['plotSize'].touched" class="font-small-1 text-danger">
                               Plot Size is required
                             </small>
@@ -433,8 +436,9 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <span class="form-group has-float-label">
-                            <input class="form-control" type="number" min="0" placeholder="Average yield" name="averageYield" formControlName="averageYield">
                             <span>Average yield</span>
+                            <input class="form-control" type="number" min="0" placeholder="Average yield" name="averageYield" formControlName="averageYield">
+
                             <small *ngIf="step2Form.controls['averageYield'].hasError('required') && step2Form.controls['averageYield'].touched" class="font-small-1 text-danger">
                               Average Yield is required
                             </small>
@@ -479,7 +483,7 @@
                 <button type="submit" class="btn-wiz btn" [disabled]="step2Form.invalid" awNextStep>NEXT</button>
               </form>
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 3">
+            <aw-wizard-step stepTitle="Step 3" (stepEnter)="scrolltoTop()">
               <form [formGroup]="step3Form" (ngSubmit)="step3()">
                 <div class="row">
                   <div class="col-md-12">
@@ -509,28 +513,39 @@
                         </div>
                       </div>
                       <div class="col-md-3">
-
                         <div class="form-group">
-                          <div class="position-relative has-icon-right">
-                            <input class="form-control" type="number" min="0" placeholder="Organic Matter" name="organicMatter" formControlName="organicMatter">
-                            <div class="form-control-position">
-                              <i class="ft-percent"></i>
-                            </div>
-                            <small *ngIf="step3Form.controls['organicMatter'].hasError('required') && step3Form.controls['organicMatter'].touched" class="font-small-1 text-danger">
-                              Organic Matter is required
-                            </small>
-                          </div>
+                          <!-- <div class="position-relative has-icon-right"> -->
+                          <span class="has-float-label">
+                            <label for="Organic Matter">Organic Matter</label>
+                            <input class="form-control" type="number" min="0" max="99" placeholder="Organic Matter %" name="organicMatter" formControlName="organicMatter">
+
+                            <!-- <div class="form-control-position">
+                                <i class="ft-percent"></i>
+                              </div> -->
+                          </span>
+                          <small *ngIf="step3Form.controls['organicMatter'].hasError('required') && step3Form.controls['organicMatter'].touched" class="font-small-1 text-danger">
+                            Organic Matter is required
+                          </small>
+                          <small *ngIf="step3Form.controls['organicMatter'].hasError('min') || step3Form.controls['organicMatter'].hasError('max')"
+                            class="font-small-1 text-danger">
+                            Organic Matter should be between 0 and 99
+                          </small>
+                          <!-- </div> -->
                         </div>
 
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
                           <span class="has-float-label">
-                            <input class="form-control" id="ph" min="0" max="14" type="number" placeholder="pH" name="ph" formControlName="ph" />
                             <label for="ph">pH</label>
+                            <input class="form-control" id="ph" min="1" max="13" type="number" placeholder="pH" name="ph" formControlName="ph" />
+
                           </span>
                           <small *ngIf="step3Form.controls['ph'].hasError('required') && step3Form.controls['ph'].touched" class="font-small-1 text-danger">
                             ph is required
+                          </small>
+                          <small *ngIf="step3Form.controls['ph'].hasError('min') || step3Form.controls['ph'].hasError('max')" class="font-small-1 text-danger">
+                            ph should be between 1 and 13
                           </small>
                         </div>
                       </div>
@@ -592,7 +607,7 @@
                           <select class="form-control custom-select" name="extMethod" formControlName="extMethod">
                             <option *ngFor="let ext of item.extMethod" [value]="ext.value.id">{{ext.value.name}}</option>
                           </select>
-                          <span>Select Extraction method</span>
+                          <span>Extraction method</span>
                           <small *ngIf="step3Form.controls['nutrientData'].hasError('required') && step3Form.controls['nutrientData'].touched" class="font-small-1 text-danger">
                             Extraction method is required
                           </small>
@@ -602,8 +617,8 @@
                     <div class="col-md-4">
                       <div class="form-group">
                         <span class="has-float-label">
-                          <input class="form-control" id="value" type="number" min="0" placeholder="value" name="value" formControlName="value" />
                           <label for="value">Enter value</label>
+                          <input class="form-control" id="value" type="number" min="0" placeholder="value" name="value" formControlName="value" />
                           <small *ngIf="step3Form.controls['nutrientData'].hasError('required') && step3Form.controls['nutrientData'].touched" class="font-small-1 text-danger">
                             Value is required
                           </small>
@@ -612,11 +627,11 @@
                     </div>
                   </div>
                 </div>
-                <button type="button" class="btn-custom btn" awPreviousStep>BACK</button>
+                <!-- <button type="button" class="btn-custom btn" awPreviousStep>BACK</button> -->
                 <button type="submit" class="btn-wiz btn" [disabled]="step3Form.invalid" awNextStep>NEXT</button>
               </form>
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 4">
+            <aw-wizard-step stepTitle="Step 4" (stepEnter)="scrolltoTop()">
               <div class="row">
                 <div class="col-md-12">
                   <h4 class="fgreen">Carefully check your details</h4>
@@ -700,23 +715,12 @@
                 </div>
               </div>
               <button type="button" class="btn-custom btn" awPreviousStep>BACK</button>
-              <!-- <form ngNoForm action='https://sandbox.2checkout.com/checkout/purchase' method='post'>
-                <input type='hidden' name='sid' value='901385127' />
-                <input type='hidden' name='mode' value='2CO' />
-                <input type='hidden' name='li_0_type' value='product' />
-                <input type='hidden' name='li_0_name' value='Subscription' />
-                <input type='hidden' name='li_0_price' value='25.99' />
-                <input type='hidden' name='li_0_quantity' value='1' />
-                <input type='hidden' name='li_0_tangible' value='N' />
-                <input type='hidden' name='x_receipt_link_url' value='http://nikuyahoo039-001-site1.htempurl.com/' />
-                <input name='submit' class="btn-wiz btn" type='submit' value='GET REPORT' />
-              </form> -->
               <form ngNoForm action='https://sandbox.2checkout.com/checkout/purchase' method='post'>
                 <input type='hidden' name='sid' value='901385127' />
                 <input type='hidden' name='mode' value='2CO' />
                 <input type='hidden' name='li_0_type' value='product' />
                 <input type='hidden' name='li_0_name' value='Subscription' />
-                <input type='hidden' name='li_0_price' value='49' />
+                <input type='hidden' name='li_0_price' value='79' />
                 <input type='hidden' name='li_0_quantity' value='1' />
                 <input type='hidden' name='li_0_tangible' value='N' />
                 <input type='hidden' name='card_holder_name' value='Checkout Shopper' />
@@ -734,10 +738,12 @@
               </form>
               <!-- <button type="button" class="btn-wiz btn" awNextStep>GET REPORT</button> -->
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 5" awSelectedStep *ngIf="isPay">
+            <aw-wizard-step stepTitle="Step 5" awSelectedStep *ngIf="isPay" (stepEnter)="scrolltoTop()">
               <br>
               <div class="row" *ngIf="!reportData" style="margin:auto 0;">
-                <h4 class="fgreen">Please wait while your report is generating</h4>
+                <div class="col-md-12">
+                  <h4 class="fgreen text-center col-md-12">Not ready yet</h4>
+                </div>
               </div>
               <div class="row" *ngIf="reportData">
                 <div class="col-md-12" *ngIf="reportData.ScheduleResponse">
@@ -757,19 +763,19 @@
                     <tr>
                       <td>Crop</td>
                       <th>{{form2?.cropName}}</th>
-                      <td>Variety</td>
-                      <th>{{form2?.variety}}</th>
+                      <!-- <td>Variety</td>
+                      <th>{{form2?.variety}}</th> -->
                     </tr>
                     <tr>
-                      <td>Growing method</td>
-                      <th>{{form2?.specifics}}</th>
+                      <!-- <td>Growing method</td>
+                      <th>{{form2?.specifics}}</th> -->
                       <td>Yield goal</td>
                       <th>{{form2?.averageYield}}</th>
                     </tr>
                   </table>
                   <!-- <p>You will receive your fertilizer recommendation shortly delivered to your inbox.</p> -->
                   <p-accordion [multiple]="true">
-                    <p-accordionTab header="Nutrient Summary" [selected]="true">
+                    <!-- <p-accordionTab header="Nutrient Summary" [selected]="true">
                       <table class="table">
                         <tr>
                           <td>Nutrient</td>
@@ -796,78 +802,80 @@
                           <th>{{fullfilled_K | number}}</th>
                         </tr>
                       </table>
-                    </p-accordionTab>
-                    <p-accordionTab header="{{item.Name}}" *ngFor="let item of reportData?.ScheduleResponse.stages" [selected]="true">
+                    </p-accordionTab> -->
+                    <p-accordionTab header="Stages - {{item.Name}}" *ngFor="let item of reportData?.ScheduleResponse?.stages" [selected]="true">
                       <p style="    float: right;">Duration :
-                        <strong>{{item?.Duration}}</strong>
+                        <strong>{{item?.Duration}} Days</strong>
                       </p>
                       <table class="table">
                         <tr>
-                          <td>Fertilizer Name</td>
-                          <td>Application Amount</td>
-                          <td>Unit</td>
+                          <th>Fertilizer Name</th>
+                          <th>Application Amount</th>
+                          <th>Unit</th>
                         </tr>
                         <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
-                          <th>{{fer?.Name}}</th>
-                          <th>{{fer?.Concentration}}</th>
-                          <th *ngIf="fer?.ConcentrationUnit == 6">Kg</th>
-                          <th *ngIf="fer?.ConcentrationUnit == 9">lbs</th>
+                          <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
+                          <td *ngIf="fer?.Concentration != 0">{{fer?.Concentration | number:'1.0-0'}}</td>
+                          <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0">Kg</td>
+                          <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0">lbs</td>
+                          <td *ngIf="fer?.ConcentrationUnit != 6 &&  fer?.ConcentrationUnit != 9 && fer?.Concentration != 0"></td>
                         </tr>
+                      </table>
+                    </p-accordionTab>
+                    <p-accordionTab header="Season Summary - Fertilizers" [selected]="true">
+                      <table class="table table-bordered">
+                        <tr>
+                          <th>Fertilizer</th>
+                          <th colspan="2" class="text-center">Quantity</th>
+                        </tr>
+                        <tbody *ngFor="let item of reportData?.ScheduleResponse?.stages">
+                          <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
+                            <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
+                            <td *ngIf="fer?.Concentration != 0">{{fer?.Concentration | number:'1.0-0'}}</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0">Kg</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0">lbs</td>
+                            <td *ngIf="fer?.ConcentrationUnit != 6 &&  fer?.ConcentrationUnit != 9 && fer?.Concentration != 0"></td>
+                          </tr>
+                        </tbody>
                       </table>
                     </p-accordionTab>
                     <p-accordionTab header="Season Summary - NPK distribution" [selected]="true">
                       <table class="table table-bordered">
                         <tr>
-                          <td></td>
-                          <td colspan="2" class="text-center">N</td>
-                          <td colspan="2" class="text-center">P</td>
-                          <td colspan="2" class="text-center">K</td>
+                          <th></th>
+                          <th colspan="2" class="text-center">N</th>
+                          <th colspan="2" class="text-center">P</th>
+                          <th colspan="2" class="text-center">K</th>
                         </tr>
                         <tr>
-                          <td>Stage name</td>
-                          <td>kg/ha/stage*</td>
-                          <td>kg/ha/day**</td>
-                          <td>kg/ha/stage*</td>
-                          <td>kg/ha/day**</td>
-                          <td>kg/ha/stage*</td>
-                          <td>kg/ha/day**</td>
+                          <th>Stage name</th>
+                          <th>kg/ha/stage</th>
+                          <th>kg/ha/day</th>
+                          <th>kg/ha/stage</th>
+                          <th>kg/ha/day</th>
+                          <th>kg/ha/stage</th>
+                          <th>kg/ha/day</th>
                         </tr>
-                        <tr *ngFor="let item of reportData?.ScheduleResponse.stages">
-                          <th>{{item?.Name}}</th>
-                          <th>{{item?.FertAddition?.N_Val ? item?.FertAddition?.N_Val : 0 | number}}</th>
-                          <th>{{item?.FertAddition?.N_Val / item?.Duration | number}}</th>
-                          <th>{{item?.FertAddition?.P_Val ? item?.FertAddition?.P_Val : 0 | number}}</th>
-                          <th>{{item?.FertAddition?.P_Val / item?.Duration | number}}</th>
-                          <th>{{item?.FertAddition?.K_Val ? item?.FertAddition?.K_Val : 0 | number}}</th>
-                          <th>{{item?.FertAddition?.K_Val / item?.Duration | number}}</th>
+                        <tr *ngFor="let item of reportData?.ScheduleResponse?.stages">
+                          <td>{{item?.Name}}</td>
+                          <td>{{item?.FertAddition?.N_Val ? (item?.FertAddition?.N_Val | number:'1.0-0') : 0 }}</td>
+                          <td>{{item?.FertAddition?.N_Val / item?.Duration | number:'1.0-0'}}</td>
+                          <td>{{item?.FertAddition?.P_Val ? (item?.FertAddition?.P_Val | number:'1.0-0' ) : 0 }}</td>
+                          <td>{{item?.FertAddition?.P_Val / item?.Duration | number:'1.0-0'}}</td>
+                          <td>{{item?.FertAddition?.K_Val ? (item?.FertAddition?.K_Val | number:'1.0-0') : 0 }}</td>
+                          <td>{{item?.FertAddition?.K_Val / item?.Duration | number:'1.0-0'}}</td>
                         </tr>
                         <tr>
-                          <td>Total</td>
-                          <th>{{getSum('N') | number}}</th>
-                          <th>{{getSum('n') | number}}</th>
-                          <th>{{getSum('P') | number}}</th>
-                          <th>{{getSum('p') | number}}</th>
-                          <th>{{getSum('K') | number}}</th>
-                          <th>{{getSum('k') | number}}</th>
+                          <th>Total</th>
+                          <td>{{getSum('N') | number:'1.0-0'}}</td>
+                          <td>{{getSum('n') | number:'1.0-0'}}</td>
+                          <td>{{getSum('P') | number:'1.0-0'}}</td>
+                          <td>{{getSum('p') | number:'1.0-0'}}</td>
+                          <td>{{getSum('K') | number:'1.0-0'}}</td>
+                          <td>{{getSum('k') | number:'1.0-0'}}</td>
                         </tr>
                       </table>
 
-                    </p-accordionTab>
-                    <p-accordionTab header="Season Summary - Fertilizers" [selected]="true">
-                      <table class="table table-bordered">
-                        <tr>
-                          <td>Fertilizer</td>
-                          <td colspan="2" class="text-center">Quantity</td>
-                        </tr>
-                        <tbody *ngFor="let item of reportData?.ScheduleResponse.stages">
-                          <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
-                            <th>{{fer?.Name}}</th>
-                            <th>{{fer?.Concentration}}</th>
-                            <th *ngIf="fer?.ConcentrationUnit == 6">Kg</th>
-                            <th *ngIf="fer?.ConcentrationUnit == 9">lbs</th>
-                          </tr>
-                        </tbody>
-                      </table>
                     </p-accordionTab>
                   </p-accordion>
                   <br>

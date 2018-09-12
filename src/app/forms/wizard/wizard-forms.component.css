@@ -140,3 +140,7 @@
     font-weight: normal;
     color: #6f9c40;
 }
+
+:host ::ng-deep aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.current:after {
+    background-color: orange!important;
+}

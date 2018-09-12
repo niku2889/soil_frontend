@@ -217,10 +217,10 @@ export class WizardFormsComponent implements OnInit {
                 Validators.required
             ]),
             organicMatter: new FormControl('', [
-                Validators.required
+                Validators.required,Validators.min(0),Validators.max(99)
             ]),
             ph: new FormControl('', [
-                Validators.required
+                Validators.required,Validators.min(1),Validators.max(13)
             ]),
             nutrientData: new FormArray([]),
         });
@@ -264,7 +264,7 @@ export class WizardFormsComponent implements OnInit {
             nutrient: ['1', Validators.required],
             nutrientUnit: ['ppm', Validators.required],
             extMethod: ['1', Validators.required],
-            value: ['', Validators.required],
+            value: ['0', Validators.required],
         });
     }
 
@@ -411,5 +411,9 @@ export class WizardFormsComponent implements OnInit {
             pdf.save('FertilizerSchedule_' + d + '.pdf'); // Generated PDF   
         });
 
+    }
+
+    scrolltoTop(){
+        window.scrollTo(0,0);
     }
 }
