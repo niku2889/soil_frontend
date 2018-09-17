@@ -163,7 +163,18 @@ export class SoilService {
     let nutri = '';
     if (form3.nutrient.toString().indexOf("NO3") > -1 || form3.nutrient.toString().indexOf("NH4") > -1 || form3.nutrient.toString().indexOf("NH2") > -1) {
       nutri = "n";
-    }else{
+    } else if (form3.nutrient.toString().indexOf("PO4") > -1 || form3.nutrient.toString().indexOf("P2O5") > -1 || form3.nutrient.toString().indexOf("H2PO4") > -1) {
+      nutri = "p";
+    } else if (form3.nutrient.toString().indexOf("K2O") > -1) {
+      nutri = "k";
+    } else if (form3.nutrient.toString().indexOf("CaO") > -1 || form3.nutrient.toString().indexOf("CaCO3") > -1) {
+      nutri = "ca";
+    } else if (form3.nutrient.toString().indexOf("MgO") > -1 || form3.nutrient.toString().indexOf("MgCO3") > -1) {
+      nutri = "mg";
+    } else if (form3.nutrient.toString().indexOf("SO4") > -1) {
+      nutri = "s";
+    }
+    else {
       nutri = form3.nutrient.toString().replace(0, 'o').toLowerCase();
     }
     const body = JSON.stringify({
