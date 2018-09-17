@@ -160,11 +160,17 @@ export class SoilService {
   }
 
   postConvertionValue(form3, nutrient) {
+    let nutri = '';
+    if (form3.nutrient.toString().indexOf("NO3") > -1 || form3.nutrient.toString().indexOf("NH4") > -1 || form3.nutrient.toString().indexOf("NH2") > -1) {
+      nutri = "n";
+    }else{
+      nutri = form3.nutrient.toString().replace(0, 'o').toLowerCase();
+    }
     const body = JSON.stringify({
       "nutrient": nutrient.toString().toLowerCase(),
       "value": form3.value,
       "currentNutrientForm": form3.nutrient.toString().replace(0, 'o'),
-      "toNutrientForm": form3.nutrient.toString().replace(0, 'o').toLowerCase(),
+      "toNutrientForm": nutri,
       "fromUnit": form3.nutrientUnit,
       "toUnit": "ppm",
       "layerDepth": 20,
