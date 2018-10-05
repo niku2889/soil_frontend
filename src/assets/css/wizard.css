@@ -288,7 +288,9 @@
   font-size: 100%!important;
   opacity: .5;
   top: .9em!important;
+
   font-weight: 400;
+ 
   border: none;
     right: inherit;
     left: 10px;
@@ -316,8 +318,9 @@
 
 .btn-custom{
   background: white!important;
-  border:solid 1px forestgreen!important;
-  color: forestgreen!important;
+  min-width: 120px;
+  border:solid 1px #9eca45!important;
+  color: #9eca45!important;
 }
 
 .btn-wiz{
@@ -331,6 +334,7 @@
     border-radius: 2px;
     text-transform: uppercase;
     border: 1px solid forestgreen;
+    border-radius: 0.25rem!important;
 
 }
 

@@ -103,7 +103,7 @@
 
 :host ::ng-deep form .form-control{
     border: 1px solid #c5c5c5!important;
-    color: darkgreen!important;
+    color: #2b4a27!important;
     line-height: 2!important;
   }
 
@@ -143,4 +143,70 @@
 
 :host ::ng-deep aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.current:after {
     background-color: orange!important;
+}
+
+:host ::ng-deep aw-wizard-navigation-bar.horizontal ul.steps-indicator{
+    margin-bottom: 1.5rem!important;
+}
+
+:host ::ng-deep aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.done:after {
+    background-color: #6f9c40;
+}
+
+::placeholder { 
+    color:#c5c5c5;
+    font-style: italic;
+    font-family: "Open Sans", sans-serif !important;
+}
+
+.termscs{
+    line-height: 1;
+    color: #647163;
+    font-weight: 300;
+}
+
+:host ::ng-deep h4, .h4 {
+    font-size: 1.4em!important;
+}
+
+select.minimal {
+    background-image:
+      linear-gradient(45deg, transparent 50%, gray 50%),
+      linear-gradient(135deg, gray 50%, transparent 50%),
+      linear-gradient(to right, transparent , transparent );
+    background-position:
+      calc(100% - 20px) calc(1em + 2px),
+      calc(100% - 15px) calc(1em + 2px),
+      calc(100% - 2.5em) 0.5em;
+    background-size:
+      5px 5px,
+      5px 5px,
+      1px 1.5em;
+    background-repeat: no-repeat;
+  }
+
+select.minimal:focus {
+    background-image:
+      linear-gradient(45deg, green 50%, transparent 50%),
+      linear-gradient(135deg, transparent 50%, green 50%),
+      linear-gradient(to right, transparent , transparent );
+    background-position:
+      calc(100% - 15px) 1em,
+      calc(100% - 20px) 1em,
+      calc(100% - 2.5em) 0.5em;
+    background-size:
+      5px 5px,
+      5px 5px,
+      1px 1.5em;
+    background-repeat: no-repeat;
+    border-color: green;
+    outline: 0;
+  }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
 }

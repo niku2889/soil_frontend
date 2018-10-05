@@ -61,7 +61,8 @@ import { GrowlModule } from 'primeng/growl';
         FormsModule,
         NGXFormWizardModule,
         CustomFormsModule,
-        MatchHeightModule,
+        MatchHeightModule
+        
 
     ],
     declarations: [
