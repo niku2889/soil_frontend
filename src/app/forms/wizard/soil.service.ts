@@ -349,18 +349,6 @@ export class SoilService {
             "AcidConcentration": "0"
           },
           {
-            "Id": 26,
-            "FertilizerId": 26,
-            "ConcentrationUnit": 1,
-            "AcidConcentration": "0"
-          },
-          {
-            "Id": 5400,
-            "FertilizerId": 5400,
-            "ConcentrationUnit": 1,
-            "AcidConcentration": "0"
-          },
-          {
             "Id": 23,
             "FertilizerId": 23,
             "ConcentrationUnit": 1,
@@ -409,18 +397,6 @@ export class SoilService {
             "AcidConcentration": "0"
           },
           {
-            "Id": 4469,
-            "FertilizerId": 4469,
-            "ConcentrationUnit": 4,
-            "AcidConcentration": "0"
-          },
-          {
-            "Id": 4504,
-            "FertilizerId": 4504,
-            "ConcentrationUnit": 1,
-            "AcidConcentration": "0"
-          },
-          {
             "Id": 14,
             "FertilizerId": 14,
             "ConcentrationUnit": 1,
@@ -439,12 +415,6 @@ export class SoilService {
             "AcidConcentration": "0"
           },
           {
-            "Id": 4413,
-            "FertilizerId": 4413,
-            "ConcentrationUnit": 1,
-            "AcidConcentration": "0"
-          },
-          {
             "Id": 4551,
             "FertilizerId": 4551,
             "ConcentrationUnit": 1,
@@ -459,12 +429,6 @@ export class SoilService {
           {
             "Id": 13,
             "FertilizerId": 13,
-            "ConcentrationUnit": 1,
-            "AcidConcentration": "0"
-          },
-          {
-            "Id": 4459,
-            "FertilizerId": 4459,
             "ConcentrationUnit": 1,
             "AcidConcentration": "0"
           },
@@ -499,12 +463,6 @@ export class SoilService {
             "AcidConcentration": "0"
           },
           {
-            "Id": 8235,
-            "FertilizerId": 8235,
-            "ConcentrationUnit": 1,
-            "AcidConcentration": "0"
-          },
-          {
             "Id": 6234,
             "FertilizerId": 6234,
             "ConcentrationUnit": 1,
@@ -534,6 +492,7 @@ export class SoilService {
             "ConcentrationUnit": 1,
             "AcidConcentration": "0"
           }
+
         ]
       }
     })

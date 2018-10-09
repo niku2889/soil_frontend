@@ -82,12 +82,9 @@ export class WizardFormsComponent implements OnInit {
         var url_string = window.location.href;
         var url = new URL(url_string);
         this.payUrl = url.searchParams.get("credit_card_processed");
-        console.log(this.payUrl)
         if (this.payUrl == null) {
             this.router.navigate['/'];
-            alert('hi')
         } else {
-            alert('hi123')
             if (this.payUrl == 'Y') {
                 this.isPay = true;
                 this.stepIndex = 4;
@@ -450,7 +447,6 @@ export class WizardFormsComponent implements OnInit {
 
     getBase64Image(img) {
         var canvas = document.createElement("canvas");
-        console.log("image");
         canvas.width = img.width;
         canvas.height = img.height;
         var ctx = canvas.getContext("2d");
