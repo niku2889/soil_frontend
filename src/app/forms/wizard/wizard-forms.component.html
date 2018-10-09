@@ -655,7 +655,7 @@
                 <button type="submit" class="btn-wiz btn" [disabled]="step3Form.invalid" awNextStep>NEXT</button>
               </form>
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 4" (stepEnter)="scrolltoTop()">
+            <aw-wizard-step stepTitle="Step 4">
               <div class="row">
                 <div class="col-md-12">
                   <h4 class="fgreen">Carefully check your details</h4>
@@ -765,11 +765,11 @@
                 <!-- <input type='hidden' name='x_receipt_link_url' value='http://localhost:4200/forms/wizard' /> -->
                 <input type='hidden' name='email' value='example@2co.com' />
                 <input type='hidden' name='phone' value='614-921-2450' />
-                <input name='submit' type='submit' class="btn-wiz btn" *ngIf="!isPay" value='GET REPORT' />
+                <input name='submit' type='submit' class="btn-wiz btn" *ngIf="!isPay" [disabled]="isConvert" value='GET REPORT'  />
               </form>
               <!-- <button type="button" class="btn-wiz btn" awNextStep>GET REPORT</button> -->
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 5" awSelectedStep *ngIf="isPay" (stepEnter)="scrolltoTop()">
+            <aw-wizard-step stepTitle="Step 5"   (stepEnter)="scrolltoTop()">
               <br>
               <div class="row" *ngIf="!reportData" style="margin:auto 0;">
                 <div class="col-md-12 text-center">

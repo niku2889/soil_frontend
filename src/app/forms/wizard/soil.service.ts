@@ -208,7 +208,7 @@ export class SoilService {
       "Crop": {
         "CropId": Number(cropId),
         "VarietyId": Number(form2.variety ? form2.variety : 1),
-        "YieldGoalId": 1,
+        "YieldGoalId": Number(form2.averageYield ? form2.averageYield : 1),
         "plantingDate": ""
       },
       "Farmer": {
@@ -278,8 +278,8 @@ export class SoilService {
         "EM_Cu_Cbo": "1",
         "EM_Mo_Cbo": "1",
         "EM_Na_Cbo": "1",
-        "EM_Al_Cbo": "1",
-        "EM_Cl_Cbo": "1",
+        // "EM_Al_Cbo": "1",
+        // "EM_Cl_Cbo": "1",
         "UnitId": 1,
         "N_Val": parseFloat(convertData[0]['changeNutrientForm']),
         "P_Val": parseFloat(convertData[1]['changeNutrientForm']),
@@ -293,9 +293,9 @@ export class SoilService {
         "Zn_Val": parseFloat(convertData[9]['changeNutrientForm']),
         "Cu_Val": parseFloat(convertData[10]['changeNutrientForm']),
         "Mo_Val": parseFloat(convertData[11]['changeNutrientForm']),
-        "Na_Val": parseFloat(convertData[12]['changeNutrientForm']),
-        "Al_Val": parseFloat(convertData[13]['changeNutrientForm']),
-        "Cl_Val": parseFloat(convertData[14]['changeNutrientForm'])
+        "Na_Val": parseFloat(convertData[12]['changeNutrientForm'])
+        // "Al_Val": parseFloat(convertData[13]['changeNutrientForm']),
+        // "Cl_Val": parseFloat(convertData[14]['changeNutrientForm'])
       },
       // "BaseDressing": {
       //   "CEC": "13",
