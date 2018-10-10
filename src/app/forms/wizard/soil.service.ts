@@ -201,6 +201,11 @@ export class SoilService {
     });
   }
 
+  getNutrientForm(form, data) {
+    let nutrient: any[] = data.filter(a => a.name == form);
+    return nutrient[0]['changeNutrientForm'];
+  }
+
   postReport(form1, form2, form3, convertData, cropId, userid, token) {
     const body = JSON.stringify({
       "userId": userid,
@@ -281,19 +286,19 @@ export class SoilService {
         // "EM_Al_Cbo": "1",
         // "EM_Cl_Cbo": "1",
         "UnitId": 1,
-        "N_Val": parseFloat(convertData[0]['changeNutrientForm']),
-        "P_Val": parseFloat(convertData[1]['changeNutrientForm']),
-        "K_Val": parseFloat(convertData[2]['changeNutrientForm']),
-        "Ca_Val": parseFloat(convertData[3]['changeNutrientForm']),
-        "Mg_Val": parseFloat(convertData[4]['changeNutrientForm']),
-        "S_Val": parseFloat(convertData[5]['changeNutrientForm']),
-        "B_Val": parseFloat(convertData[6]['changeNutrientForm']),
-        "Fe_Val": parseFloat(convertData[7]['changeNutrientForm']),
-        "Mn_Val": parseFloat(convertData[8]['changeNutrientForm']),
-        "Zn_Val": parseFloat(convertData[9]['changeNutrientForm']),
-        "Cu_Val": parseFloat(convertData[10]['changeNutrientForm']),
-        "Mo_Val": parseFloat(convertData[11]['changeNutrientForm']),
-        "Na_Val": parseFloat(convertData[12]['changeNutrientForm'])
+        "N_Val": parseFloat(this.getNutrientForm('N', convertData)),
+        "P_Val": parseFloat(this.getNutrientForm('P', convertData)),
+        "K_Val": parseFloat(this.getNutrientForm('K', convertData)),
+        "Ca_Val": parseFloat(this.getNutrientForm('Ca', convertData)),
+        "Mg_Val": parseFloat(this.getNutrientForm('Mg', convertData)),
+        "S_Val": parseFloat(this.getNutrientForm('S', convertData)),
+        "B_Val": parseFloat(this.getNutrientForm('B', convertData)),
+        "Fe_Val": parseFloat(this.getNutrientForm('Fe', convertData)),
+        "Mn_Val": parseFloat(this.getNutrientForm('Mn', convertData)),
+        "Zn_Val": parseFloat(this.getNutrientForm('Zn', convertData)),
+        "Cu_Val": parseFloat(this.getNutrientForm('Cu', convertData)),
+        "Mo_Val": parseFloat(this.getNutrientForm('Mo', convertData)),
+        "Na_Val": parseFloat(this.getNutrientForm('Na', convertData)),
         // "Al_Val": parseFloat(convertData[13]['changeNutrientForm']),
         // "Cl_Val": parseFloat(convertData[14]['changeNutrientForm'])
       },
