@@ -206,6 +206,22 @@ export class SoilService {
     return nutrient[0]['changeNutrientForm'];
   }
 
+  getYieldGoal(cropId, userid, token, form2, soilTypeId) {
+    var y: Number;
+    if (form2.averageYieldUnit == "ton/Acre") {
+      y = Number(form2.averageYield) * (2.242)
+    }
+    return Observable.create((observer) => {
+      return this._http.get("http://test-app.smart-fertilizer.com/api/crop/" + userid + "/" + cropId + "/variety/" + form2.variety + "/soiltype/" + soilTypeId + "/yieldgoal/" + y + "/id?token=" + token + "")
+        .subscribe(data => {
+          observer.next(data);
+        },
+          err => {
+            console.error(err);
+          });
+    });
+  }
+
   postReport(form1, form2, form3, convertData, cropId, userid, token) {
     const body = JSON.stringify({
       "userId": userid,
