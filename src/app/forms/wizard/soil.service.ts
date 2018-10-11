@@ -209,7 +209,9 @@ export class SoilService {
   getYieldGoal(cropId, userid, token, form2, soilTypeId) {
     var y: Number;
     if (form2.averageYieldUnit == "ton/Acre") {
-      y = Number(form2.averageYield) * (2.242)
+      y = Number(form2.averageYield) * (2.242);
+    }else{
+      y = Number(form2.averageYield) * (1);
     }
     return Observable.create((observer) => {
       return this._http.get("http://test-app.smart-fertilizer.com/api/crop/" + userid + "/" + cropId + "/variety/" + form2.variety + "/soiltype/" + soilTypeId + "/yieldgoal/" + y + "/id?token=" + token + "")
