@@ -210,7 +210,7 @@ export class SoilService {
     var y: Number;
     if (form2.averageYieldUnit == "ton/Acre") {
       y = Number(form2.averageYield) * (2.242);
-    }else{
+    } else {
       y = Number(form2.averageYield) * (1);
     }
     return Observable.create((observer) => {
@@ -224,14 +224,14 @@ export class SoilService {
     });
   }
 
-  postReport(form1, form2, form3, convertData, cropId, userid, token) {
+  postReport(form1, form2, form3, convertData, cropId, userid, token, yieldGoal) {
     const body = JSON.stringify({
       "userId": userid,
       "token": token,
       "Crop": {
         "CropId": Number(cropId),
         "VarietyId": Number(form2.variety ? form2.variety : 1),
-        "YieldGoalId": Number(form2.averageYield ? form2.averageYield : 1),
+        "YieldGoalId": yieldGoal,
         "plantingDate": ""
       },
       "Farmer": {

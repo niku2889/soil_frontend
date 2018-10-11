@@ -374,32 +374,33 @@ export class WizardFormsComponent implements OnInit {
                 this.service.getYieldGoal(this.cropId, data.UserId, data.Token, this.form2, 1)
                     .subscribe(data => {
                         this.finalYield = data.Id;
+                        this.service.postReport(this.form1, this.form2, this.form3, this.convertFinal, this.cropId, data.UserId, data.Token,this.finalYield)
+                            .subscribe(data1 => {
+                                this.reportData = data1;
+                                for (let i = 0; i < this.reportData.ScheduleResponse.stages.length; i++) {
+                                    this.fullfilled_N = 0;
+                                    this.fullfilled_P = 0;
+                                    this.fullfilled_K = 0;
+
+                                    this.actual_N = this.actual_N + Number(this.reportData.ScheduleResponse.stages[i].NeededAddition != null ? this.reportData.ScheduleResponse.stages[i].NeededAddition.N_Val : 0);
+                                    this.actual_P = this.actual_P + Number(this.reportData.ScheduleResponse.stages[i].NeededAddition != null ? this.reportData.ScheduleResponse.stages[i].NeededAddition.P_Val : 0);
+                                    this.actual_K = this.actual_K + Number(this.reportData.ScheduleResponse.stages[i].NeededAddition != null ? this.reportData.ScheduleResponse.stages[i].NeededAddition.K_Val : 0);
+
+                                    this.current_N = this.current_N + Number(this.reportData.ScheduleResponse.stages[i].FertAddition != null ? this.reportData.ScheduleResponse.stages[i].FertAddition.N_Val : 0);
+                                    this.current_P = this.current_P + Number(this.reportData.ScheduleResponse.stages[i].FertAddition != null ? this.reportData.ScheduleResponse.stages[i].FertAddition.P_Val : 0);
+                                    this.current_K = this.current_K + Number(this.reportData.ScheduleResponse.stages[i].FertAddition != null ? this.reportData.ScheduleResponse.stages[i].FertAddition.K_Val : 0);
+
+                                    this.fullfilled_N = 100 * (this.actual_N / (this.current_N == 0 ? 1 : this.current_N));
+                                    this.fullfilled_P = 100 * (this.actual_P / (this.current_P == 0 ? 1 : this.current_P));
+                                    this.fullfilled_K = 100 * (this.actual_K / (this.current_P == 0 ? 1 : this.current_P));
+
+                                    this.value = 100;
+
+                                }
+                                this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Report Generated Successfully' });
+                            });
                     });
-                this.service.postReport(this.form1, this.form2, this.form3, this.convertFinal, this.cropId, data.UserId, data.Token)
-                    .subscribe(data1 => {
-                        this.reportData = data1;
-                        for (let i = 0; i < this.reportData.ScheduleResponse.stages.length; i++) {
-                            this.fullfilled_N = 0;
-                            this.fullfilled_P = 0;
-                            this.fullfilled_K = 0;
 
-                            this.actual_N = this.actual_N + Number(this.reportData.ScheduleResponse.stages[i].NeededAddition != null ? this.reportData.ScheduleResponse.stages[i].NeededAddition.N_Val : 0);
-                            this.actual_P = this.actual_P + Number(this.reportData.ScheduleResponse.stages[i].NeededAddition != null ? this.reportData.ScheduleResponse.stages[i].NeededAddition.P_Val : 0);
-                            this.actual_K = this.actual_K + Number(this.reportData.ScheduleResponse.stages[i].NeededAddition != null ? this.reportData.ScheduleResponse.stages[i].NeededAddition.K_Val : 0);
-
-                            this.current_N = this.current_N + Number(this.reportData.ScheduleResponse.stages[i].FertAddition != null ? this.reportData.ScheduleResponse.stages[i].FertAddition.N_Val : 0);
-                            this.current_P = this.current_P + Number(this.reportData.ScheduleResponse.stages[i].FertAddition != null ? this.reportData.ScheduleResponse.stages[i].FertAddition.P_Val : 0);
-                            this.current_K = this.current_K + Number(this.reportData.ScheduleResponse.stages[i].FertAddition != null ? this.reportData.ScheduleResponse.stages[i].FertAddition.K_Val : 0);
-
-                            this.fullfilled_N = 100 * (this.actual_N / (this.current_N == 0 ? 1 : this.current_N));
-                            this.fullfilled_P = 100 * (this.actual_P / (this.current_P == 0 ? 1 : this.current_P));
-                            this.fullfilled_K = 100 * (this.actual_K / (this.current_P == 0 ? 1 : this.current_P));
-
-                            this.value = 100;
-
-                        }
-                        this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Report Generated Successfully' });
-                    });
             });
     }
 
