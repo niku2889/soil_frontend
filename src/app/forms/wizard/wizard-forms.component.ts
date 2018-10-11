@@ -372,8 +372,8 @@ export class WizardFormsComponent implements OnInit {
             .subscribe(data => {
 
                 this.service.getYieldGoal(this.cropId, data.UserId, data.Token, this.form2, 1)
-                    .subscribe(data => {
-                        this.finalYield = data.Id;
+                    .subscribe(data2 => {
+                        this.finalYield = data2.Id;
                         this.service.postReport(this.form1, this.form2, this.form3, this.convertFinal, this.cropId, data.UserId, data.Token,this.finalYield)
                             .subscribe(data1 => {
                                 this.reportData = data1;
