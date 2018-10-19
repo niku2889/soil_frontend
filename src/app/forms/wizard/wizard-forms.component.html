@@ -12,7 +12,7 @@
       </a>
     </div>
     <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;">GET YOUR FERTILIZER PLAN</h1>
-    <h1 class="content-header" class="htitle">in under 15 minutes, for only $79</h1>
+    <h1 class="content-header" class="htitle"><span *ngIf="isText">in under 15 minutes,</span>  for only $79</h1>
     <p class="hstitle">Thanks for choosing SMART for turning your
       <strong>soil tests into a professional and actionable fertilizer plan.</strong>
       <br> With more than 250 crops available, this is yout gateway to precise and more successful farming!</p>
@@ -24,8 +24,8 @@
     <div class="card" style="background: #f7f7f7!important;box-shadow: none;">
       <div class="card-body">
         <div class="card-block">
-          <aw-wizard [defaultStepIndex]="stepIndex" [navBarLayout]="'small'" [navigationMode]="'free'">
-            <aw-wizard-step stepTitle="Step 1" (stepEnter)="scrolltoTop()">
+          <aw-wizard [defaultStepIndex]="stepIndex" [disableNavigationBar]="isDisableWizard" [navBarLayout]="'small'" [navigationMode]="'free'">
+            <aw-wizard-step stepTitle="Step 1" (stepEnter)="scrolltoTop(0)">
               <form [formGroup]="step1Form" (ngSubmit)="step1()">
                 <div class="row">
                   <div class="col-md-6">
@@ -300,7 +300,7 @@
                       </i>
                       If you are growing Hydropnics "SMART lite" isn't for you.
                       <br> Please consider using our
-                      <a style="border-bottom: 1px solid;font-style: italic;">Premium solution. </a>
+                      <a style="border-bottom: 1px solid;font-style: italic;" href="#">Premium solution. </a>
                     </p>
                     <p class="bultext">
                       <i class="fa fa-asterisk"> </i> If you are using fertigation, SMART Lite will deliver a suitable
@@ -322,7 +322,7 @@
                 </div>
               </form>
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 2" (stepEnter)="scrolltoTop()">
+            <aw-wizard-step stepTitle="Step 2" (stepEnter)="scrolltoTop(1)">
               <form [formGroup]="step2Form" (ngSubmit)="step2()">
                 <div class="row">
                   <div class="col-md-12">
@@ -496,7 +496,7 @@
                 <button type="submit" class="btn-wiz btn" [disabled]="step2Form.invalid" awNextStep>NEXT</button>
               </form>
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 3" (stepEnter)="scrolltoTop()">
+            <aw-wizard-step stepTitle="Step 3"  (stepEnter)="scrolltoTop(2)">
               <form [formGroup]="step3Form" (ngSubmit)="step3()">
                 <div class="row">
                   <div class="col-md-12">
@@ -641,7 +641,7 @@
                         <span class="has-float-label">
                           <label for="value">Enter value</label>
                           <input class="form-control" id="value" type="number" min="0" placeholder="value" name="value"
-                            formControlName="value" />
+                            formControlName="value" (keyup)="nutrientChange()" />
                           <small *ngIf="step3Form.controls['nutrientData'].hasError('required') && step3Form.controls['nutrientData'].touched"
                             class="font-small-1 text-danger">
                             Value is required
@@ -652,10 +652,10 @@
                   </div>
                 </div>
                 <button type="button" class="btn-custom btn" awPreviousStep>BACK</button>
-                <button type="submit" class="btn-wiz btn" [disabled]="step3Form.invalid" awNextStep>NEXT</button>
+                <button type="submit" class="btn-wiz btn" [disabled]="step3Form.invalid || isNutrient" awNextStep>NEXT</button>
               </form>
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 4">
+            <aw-wizard-step stepTitle="Step 4" (stepEnter)="scrolltoTop(3)">
               <div class="row">
                 <div class="col-md-12">
                   <h4 class="fgreen">Carefully check your details</h4>
@@ -745,7 +745,7 @@
                   </div>
                 </div>
               </div>
-              <button type="button" class="btn-custom btn" awPreviousStep>BACK</button>
+              <!-- <button type="button" class="btn-custom btn" awPreviousStep>BACK</button> -->
               <form ngNoForm action='https://sandbox.2checkout.com/checkout/purchase' method='post'>
                 <input type='hidden' name='sid' value='901385127' />
                 <input type='hidden' name='mode' value='2CO' />
@@ -769,7 +769,7 @@
               </form>
               <!-- <button type="button" class="btn-wiz btn" awNextStep>GET REPORT</button> -->
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 5"   (stepEnter)="scrolltoTop()">
+            <aw-wizard-step stepTitle="Step 5" (stepEnter)="scrolltoTop(4)">
               <br>
               <div class="row" *ngIf="!reportData" style="margin:auto 0;">
                 <div class="col-md-12 text-center">
@@ -849,15 +849,17 @@
                         <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
                           <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
                           <td *ngIf="fer?.Concentration != 0">{{fer?.Concentration | number:'1.0-0'}}</td>
-                          <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0">liter</td>
-                          <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0">Kg</td>
-                          <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0">lbs</td>
+                          <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
+                          <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
+                          <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
+                          <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">Lbs</td>
+                          <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">gal</td>
                           <td *ngIf="fer?.ConcentrationUnit != 6 && fer?.ConcentrationUnit != 4 && fer?.ConcentrationUnit != 9 && fer?.Concentration != 0"></td>
                         </tr>
                       </table>
                     </p-accordionTab>
                     <p-accordionTab header="Season Summary - Fertilizers" [selected]="true">
-                      <table class="table table-bordered">
+                      <table class="table">
                         <tr>
                           <th>Fertilizer</th>
                           <th colspan="2" class="text-center">Quantity</th>
@@ -866,16 +868,18 @@
                           <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
                             <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
                             <td *ngIf="fer?.Concentration != 0">{{fer?.Concentration | number:'1.0-0'}}</td>
-                            <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0">liter</td>
-                            <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0">Kg</td>
-                            <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0">lbs</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">Lbs</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">gal</td>
                             <td *ngIf="fer?.ConcentrationUnit != 6 && fer?.ConcentrationUnit != 4 && fer?.ConcentrationUnit != 9 && fer?.Concentration != 0"></td>
                           </tr>
                         </tbody>
                       </table>
                     </p-accordionTab>
                     <p-accordionTab header="Season Summary - NPK distribution" [selected]="true">
-                      <table class="table table-bordered">
+                      <table class="table">
                         <tr>
                           <th></th>
                           <th colspan="2" class="text-center">N</th>

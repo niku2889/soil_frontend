@@ -270,7 +270,7 @@ export class SoilService {
           ],
           "type": "FeatureCollection"
         },
-        "PlotArea": Number(form2.plotSize),
+        "PlotArea": 1,
         "PlotName": "plot1",
         "PlotTypeId": 1
       },
