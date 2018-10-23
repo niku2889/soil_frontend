@@ -12,8 +12,8 @@
       </a>
     </div>
     <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;">GET YOUR FERTILIZER PLAN</h1>
-    <h1 class="content-header" class="htitle"><span *ngIf="isText">in under 15 minutes,</span>  for only $79</h1>
-    <p class="hstitle">Thanks for choosing SMART for turning your
+    <h1 class="content-header" class="htitle" *ngIf="isText">in under 15 minutes, for only $79</h1>
+    <p class="hstitle" *ngIf="isText">Thanks for choosing SMART for turning your
       <strong>soil tests into a professional and actionable fertilizer plan.</strong>
       <br> With more than 250 crops available, this is yout gateway to precise and more successful farming!</p>
   </div>
@@ -24,7 +24,8 @@
     <div class="card" style="background: #f7f7f7!important;box-shadow: none;">
       <div class="card-body">
         <div class="card-block">
-          <aw-wizard [defaultStepIndex]="stepIndex" [disableNavigationBar]="isDisableWizard" [navBarLayout]="'small'" [navigationMode]="'free'">
+          <aw-wizard [defaultStepIndex]="stepIndex" [disableNavigationBar]="isDisableWizard" [navBarLayout]="'small'"
+            [navigationMode]="'free'">
             <aw-wizard-step stepTitle="Step 1" (stepEnter)="scrolltoTop(0)">
               <form [formGroup]="step1Form" (ngSubmit)="step1()">
                 <div class="row">
@@ -355,7 +356,7 @@
                               </div> -->
                               <div *ngIf="crops.length == 1" class="row">
                                 <div *ngFor="let item of crops;" class="col-md-12">
-                                  <span style="margin: 0 0 0 5px;">
+                                  <span *ngIf="item.alpha" style="margin: 0 0 0 5px;">
                                     <strong>{{item.alpha}}</strong>
                                   </span>
                                   <a (click)="changeText1(rec.Name,rec.Id)" style="margin: 0 0 0 5px;" *ngFor="let rec of item.records">{{rec.Name}}</a>
@@ -363,7 +364,7 @@
                               </div>
                               <div *ngIf="crops.length > 1" class="row">
                                 <div *ngFor="let item of crops;" class="col-md-4">
-                                  <span style="margin: 0 0 0 5px;">
+                                  <span *ngIf="item.alpha" style="margin: 0 0 0 5px;">
                                     <strong>{{item.alpha}}</strong>
                                   </span>
                                   <a (click)="changeText1(rec.Name,rec.Id)" style="margin: 0 0 0 5px;" *ngFor="let rec of item.records">{{rec.Name}}</a>
@@ -496,7 +497,7 @@
                 <button type="submit" class="btn-wiz btn" [disabled]="step2Form.invalid" awNextStep>NEXT</button>
               </form>
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 3"  (stepEnter)="scrolltoTop(2)">
+            <aw-wizard-step stepTitle="Step 3" (stepEnter)="scrolltoTop(2)">
               <form [formGroup]="step3Form" (ngSubmit)="step3()">
                 <div class="row">
                   <div class="col-md-12">
@@ -765,7 +766,7 @@
                 <!-- <input type='hidden' name='x_receipt_link_url' value='http://localhost:4200/forms/wizard' /> -->
                 <input type='hidden' name='email' value='example@2co.com' />
                 <input type='hidden' name='phone' value='614-921-2450' />
-                <input name='submit' type='submit' class="btn-wiz btn" *ngIf="!isPay" [disabled]="isConvert" value='GET REPORT'  />
+                <input name='submit' type='submit' class="btn-wiz btn" *ngIf="!isPay" [disabled]="isConvert" value='GET REPORT' />
               </form>
               <!-- <button type="button" class="btn-wiz btn" awNextStep>GET REPORT</button> -->
             </aw-wizard-step>
@@ -774,7 +775,7 @@
               <div class="row" *ngIf="!reportData" style="margin:auto 0;">
                 <div class="col-md-12 text-center">
                   <h4 class="fgreen text-center col-md-12">Not ready yet</h4>
-                  <img src="assets/img/ajax-loader.gif" /> 
+                  <img src="assets/img/ajax-loader.gif" />
                 </div>
               </div>
               <div class="row" *ngIf="reportData">
@@ -835,28 +836,35 @@
                         </tr>
                       </table>
                     </p-accordionTab> -->
-                    <p-accordionTab header="Stages - {{item.Name}}" *ngFor="let item of reportData?.ScheduleResponse?.stages"
-                      [selected]="true">
-                      <p style="    float: right;">Duration :
-                        <strong>{{item?.Duration}} Days</strong>
-                      </p>
-                      <table class="table">
-                        <tr>
-                          <th>Fertilizer Name</th>
-                          <th>Application Amount</th>
-                          <th>Unit</th>
-                        </tr>
-                        <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
-                          <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
-                          <td *ngIf="fer?.Concentration != 0">{{fer?.Concentration | number:'1.0-0'}}</td>
-                          <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
-                          <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
-                          <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
-                          <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">Lbs</td>
-                          <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">gal</td>
-                          <td *ngIf="fer?.ConcentrationUnit != 6 && fer?.ConcentrationUnit != 4 && fer?.ConcentrationUnit != 9 && fer?.Concentration != 0"></td>
-                        </tr>
-                      </table>
+                    <p-accordionTab header="Stages" *ngIf="reportData?.ScheduleResponse?.stages" [selected]="true">
+                      <div *ngFor="let item of reportData?.ScheduleResponse?.stages">
+                        <p>
+                          <span style="float: left;vertical-align: middle;color: #3e8e41;">
+                            <i  class="ft-chevron-right"></i> {{item.Name}}
+                          </span>
+                          <span style="float: right;">
+                            Duration :
+                            <strong>{{item?.Duration}} Days</strong>
+                          </span>
+                        </p>
+                        <table class="table">
+                          <tr>
+                            <th>Fertilizer Name</th>
+                            <th>Application Amount</th>
+                            <th>Unit</th>
+                          </tr>
+                          <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
+                            <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
+                            <td *ngIf="fer?.Concentration != 0">{{fer?.Concentration | number:'1.0-0'}}</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">Lbs</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">gal</td>
+                            <td *ngIf="fer?.ConcentrationUnit != 6 && fer?.ConcentrationUnit != 4 && fer?.ConcentrationUnit != 9 && fer?.Concentration != 0"></td>
+                          </tr>
+                        </table>
+                      </div>
                     </p-accordionTab>
                     <p-accordionTab header="Season Summary - Fertilizers" [selected]="true">
                       <table class="table">

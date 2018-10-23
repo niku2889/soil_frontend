@@ -403,6 +403,8 @@ export class WizardFormsComponent implements OnInit {
                                 }
                                 this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Report Generated Successfully' });
                             });
+                    }, error => {
+                        this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
                     });
 
             });
@@ -412,7 +414,33 @@ export class WizardFormsComponent implements OnInit {
         this.DropdownVar = 2;
         (this.step2Form.controls["cropName"] as FormControl).valueChanges.subscribe(value => {
             if (value) {
-                this.crops = this.crops.filter(a => a.alpha == value.toString().toUpperCase().charAt(0));
+                this.crops = [];
+                for (let i = 0; i < this.alpha.length; i++) {
+                    if (this.alpha[i] == value.toString().toUpperCase().charAt(0)) {
+                        this.crop = {
+                            alpha: 'string',
+                            records: []
+                        }
+                        if (value.toString().length == 1) {
+                            this.crop = {
+                                alpha: this.alpha[i],
+                                records: this.cropsData.filter(a => {
+                                    return a.Name.toString().toLowerCase().includes(value.toString().toLowerCase().charAt(0))
+                                })
+                            }
+                        } else {
+                            this.crop = {
+                                alpha: '',
+                                records: this.cropsData.filter(a => {
+                                    return a.Name.toString().toLowerCase().includes(value.toString().toLowerCase())
+                                })
+                            }
+                        }
+
+                        this.crops.push(this.crop);
+                    }
+                }
+                //this.crops = this.crops.filter(a => a.alpha == value.toString().toUpperCase().charAt(0));
             } else {
                 this.crops = this.allcrops;
             }
@@ -424,8 +452,10 @@ export class WizardFormsComponent implements OnInit {
         this.form3 = this.step3Form.value;
         this.isNutrient = true;
         for (let i = 0; i < this.form3.nutrientData.length; i++) {
-            if (this.form3.nutrientData[i].value)
+            if (this.form3.nutrientData[i].value > 0 && this.form3.nutrientData[i].value != null) {
                 this.isNutrient = false;
+                break;
+            }
             else
                 this.isNutrient = true;
         }

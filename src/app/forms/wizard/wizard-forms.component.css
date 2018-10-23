@@ -42,6 +42,10 @@
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
+.dropdown input:focus .dropdown-content {display: block;}
+
+.dropdown input:focus .dropbtn {background-color: #3e8e41;}
+
 /* width */
 ::-webkit-scrollbar {
     width: 5px;
