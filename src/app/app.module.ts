@@ -15,7 +15,7 @@ import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
 import { FullLayoutComponent } from "./layouts/full/full-layout.component";
-// import { HorizontalLayoutComponent } from "./layouts/horizontal/horizontal-layout.component";
+import { HorizontalLayoutComponent } from "./layouts/horizontal/horizontal-layout.component";
 
 import { CustomOption } from "./shared/toastr/custom-option";
 
@@ -34,7 +34,7 @@ export function createTranslateLoader(http: HttpClient) {
     declarations: [
         AppComponent,
         FullLayoutComponent,
-        // HorizontalLayoutComponent,
+         HorizontalLayoutComponent,
         ContentLayoutComponent
     ],
     imports: [

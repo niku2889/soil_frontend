@@ -32,7 +32,6 @@ import { DropdownsComponent } from "../components/bootstrap/dropdowns/dropdowns.
 import { AccordionModule } from 'primeng/accordion';
 import { ArchwizardModule } from 'angular-archwizard';
 import { DropdownModule } from 'primeng/dropdown';
-import { NgXCreditCardsModule } from 'ngx-credit-cards';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { GrowlModule } from 'primeng/growl';
 
@@ -51,7 +50,6 @@ import { GrowlModule } from 'primeng/growl';
         ArchwizardModule,
         AccordionModule,
         DropdownModule,
-        NgXCreditCardsModule,
         ProgressBarModule,
         GrowlModule,
 

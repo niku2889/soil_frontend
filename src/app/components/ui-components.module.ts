@@ -73,7 +73,7 @@ import { SwitchComponent } from './extra/switch/switch.component';
         ToastrComponent,
         NouiSliderComponent,
         BadgesComponent,
-        DropdownsComponent,
+        //DropdownsComponent,
         InputGroupsComponent,
         MediaObjectsComponent,
         PaginationComponent,

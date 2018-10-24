@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
   //apiUrl: 'https://sportscentrum.staging.gradlesol.com/app/api/'
    apiUrl: 'https://testnick.herokuapp.com/api/'
 
