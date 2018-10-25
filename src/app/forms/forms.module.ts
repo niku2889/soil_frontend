@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { NouisliderModule } from 'ng2-nouislider/src/nouislider';
+import { NouisliderModule } from 'ng2-nouislider';
 import { JsonpModule } from '@angular/http';
 import { QuillModule } from 'ngx-quill'
 import { DragulaModule } from 'ng2-dragula';
