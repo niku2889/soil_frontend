@@ -91,6 +91,8 @@ export class WizardFormsComponent implements OnInit {
             this.router.navigate['/'];
         } else {
             if (this.payUrl == 'Y') {
+                let urlS = url_string.split('?');
+                history.pushState(url_string,null,urlS[0]);
                 this.isPay = true;
                 this.stepIndex = 4;
                 this.form1 = JSON.parse(localStorage.getItem("form1"));
@@ -484,7 +486,7 @@ export class WizardFormsComponent implements OnInit {
         // doc.save('Test.pdf');
         html2canvas(data).then(canvas => {
             // Few necessary setting options  
-            var imgWidth = 208;
+            var imgWidth = 190;
             var pageHeight = 250;
             var imgHeight = canvas.height * imgWidth / canvas.width;
             var heightLeft = imgHeight;
